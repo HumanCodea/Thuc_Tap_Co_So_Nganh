@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <html lang="en" xmlns:th="https://www.thymeleaf.com"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            height: 100vh;
+            background-size: 400% 400%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg, #4974f5, #eb7bf4);
+            animation: galaxy 5s ease infinite;
+        }
+
+        @keyframes galaxy {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container{
+            padding-top: 30px;
+            background-color: white;
+            width: 900px;
+            height: 500px;
+            border-radius: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .image_title{
+            height: 300px;
+        }
+
+        .image_title img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .login_title{
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .login_box{
+            margin-bottom: 20px;
+            background-color: rgb(220, 214, 214);
+            border-radius: 40px;
+            width: 250px;
+            height: 40px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .login_box input{
+            outline: none;
+            border: none;
+            background-color: rgb(220, 214, 214);
+            width: 180px;
+        }
+
+        .btn-primary{
+            background-color: rgb(63, 230, 83);
+            border-radius: 40px;
+            width: 150px;
+            height: 40px;
+            border-color: rgb(220, 214, 214);
+            font-size: large ;
+            font-weight: bold;
+            color: white;
+            margin: 10px 0px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover{
+            transform:scale(1.1);
+        }
+
+        .forgot_register{
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .forgot_register a{
+            color: black;
+            text-decoration: none;
+        }
+
+        .forgot_register a:hover{
+            color: rgb(93, 93, 93);
+        }
+
+    </style>
+
+    <div class="container">
+        <div class="image_title">
+            <img src="./image/banner1.png" alt="">
+        </div>
+        <div class="login">
+            <div class="login_title">Đăng nhập</div>
+            <form action="">
+                <div class="login_box">
+                    <i class='bx bxs-envelope' ></i>
+                    <input type="text" class="form-control" name="username" placeholder="Email" autocomplete="off">
+                </div>
+                <div class="login_box">
+                    <i class='bx bxs-lock-alt' ></i>
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+                <center><button type="submit" class="btn-primary">LOGIN</button></center>
+            </form>
+            <div class="forgot_register">
+                <a href="#">Forgot Password?</a>
+                <span>|</span>
+                <a href="#">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

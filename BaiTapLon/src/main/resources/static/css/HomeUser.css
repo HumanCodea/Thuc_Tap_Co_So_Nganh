@@ -1,0 +1,320 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+}
+.top-nav {
+    background-color: #000; 
+    padding: 10px 0;
+    color: white;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    padding: 0 20px; 
+    box-sizing: border-box;
+}
+.logo {
+    flex: 0 0 auto; 
+}
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.search-bar {
+    flex-grow: 1; 
+    display: flex;
+    align-items: center;
+    margin: 0 20px; 
+}
+
+.search-bar input {
+    flex-grow: 1; 
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.search-bar .search-button {
+    padding: 10px 20px;
+    margin-left: 5px;
+    border: none;
+    background-color: #e74c3c;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.search-button:hover{
+    background-color: #f3230c;
+}
+.auth-buttons {
+    flex: 0 0 auto; 
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons .login-button,
+.auth-buttons .register-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.auth-buttons .login-button {
+    background-color: #59a3d4; 
+}
+.login-button:hover{
+    background-color:#0798f8 ;
+}
+
+.auth-buttons .register-button {
+    background-color: #e74c3c; 
+}
+.register-button:hover{
+    background-color:#f3230c ;
+}
+.bottom-nav {
+    background-color: #333; 
+    padding: 10px 0;
+}
+.bottom-nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+}
+
+.bottom-nav ul li {
+    margin: 0 15px;
+}
+
+.bottom-nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+.bottom-nav ul li a:hover {
+    background-color: #e74c3c;
+    color: black;
+}
+
+.hero {
+    background-image: url(bgr_home.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.button {
+    background-color: #ff6347;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #d5561b;
+}
+.banner-section {
+    background-color: #000;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-section i{
+    font-size: 140px;
+}
+
+.banner-container {
+    gap: 20px;
+    width: 100%;
+}
+
+.banner-item img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.movies-section {
+    padding: 40px 20px;
+}
+
+.movies-section h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.movies-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.movie-item {
+    width: 200px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.movie-item h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.ticket-button {
+    display: inline-block;
+    background-color: #f08f7e;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.ticket-button:hover {
+    background-color: #ff4500;
+}
+
+.promotions-section {
+    padding: 20px 0;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.promotions-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.promotions-list {
+    list-style-type: none;
+}
+
+.promotions-list li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #222;
+    color: white;
+    padding: 40px 20px;
+    flex-wrap: wrap; 
+}
+
+.footer-column {
+    flex: 1 1 200px;
+    margin: 0 20px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icons a img {
+    width: 32px;
+    height: 32px;
+}
+
+/* Hotline */
+.footer-column ul li a {
+    color: #f1c40f; 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #444;
+    margin: 20px 0;
+}
+
+.designer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #111;
+    color: #ccc;
+}
+
+.designer p {
+    margin: 0;
+}
