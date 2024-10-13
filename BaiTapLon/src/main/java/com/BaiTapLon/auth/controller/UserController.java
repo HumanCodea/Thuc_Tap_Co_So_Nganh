@@ -18,6 +18,5 @@ public class UserController {
         return "Register";
     }
 
-    
 
 }

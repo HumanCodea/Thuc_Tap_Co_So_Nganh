@@ -42,8 +42,8 @@
     <nav class="bottom-nav">
         <ul>
             <li><a href="#">Trang Chủ</a></li>
-            <li><a href="#">Phim đang chiếu</a></li>
-            <li><a href="#">Phim Sắp Chiếu</a></li>
+            <li><a th:href="@{/phimDangChieu}">Phim đang chiếu</a></li>
+            <li><a th:href="@{/phimSapChieu}">Phim Sắp Chiếu</a></li>
             <li><a href="#">Ưu Đãi</a></li>
         </ul>
     </nav>
@@ -135,34 +135,38 @@
         </div>
     </section>
 
-    <section class="promotions-section">
+    <section class="movies-section"> 
         <h2>Khuyến Mãi</h2>
         <div class="movies-container">
-            <a href="#">
+            <a class="click-watch" href="#">
                 <div class="movie-item">
-                    <img src="https://rapchieuphim.com//photos/promotion/thumbs/uu-dai-thanh-vien-2022-thumbnail-w280.jpg" alt="ưu đãi thành viên">
+                    <img src="uu_dai.jpg" width="240px" height="200px" alt="ưu đãi thành viên">
                     <h3>Ưu đãi  thành viên của rạp</h3>
+                    <a href="#" class="ticket-button">Xem Khuyến Mãi</a>
                 </div>
             </a>
 
-            <a href="#">
+            <a class="click-watch" href="#">
                 <div class="movie-item">
-                    <img src="https://rapchieuphim.com//photos/promotion/thumbs/uu-dai-thanh-vien-u22-thumbnail-w280.jpg" alt="ưu đãi u22">
+                    <img src="uu_dai2.jpg" width="240px" height="200px" alt="ưu đãi u22">
                     <h3>Ưu đãi thành viên U22</h3>
+                    <a href="#" class="ticket-button">Xem Khuyến Mãi</a>
                 </div>
             </a>
 
-            <a href="#">
+            <a class="click-watch" href="#">
                 <div class="movie-item">
-                    <img src="https://rapchieuphim.com//photos/promotion/thumbs/lovely-tuesday-thumbnail-w280.jpg" alt="lovely tuesday">
+                    <img src="uu_dai3.jpg" width="240px" height="200px" alt="lovely tuesday">
                     <h3>Lovely tuesday</h3>
+                    <a href="#" class="ticket-button">Xem Khuyến Mãi</a>
                 </div>
             </a>
 
-            <a href="#">
+            <a class="click-watch" href="#">
                 <div class="movie-item">
-                    <img src="https://rapchieuphim.com//photos/promotion/thumbs/big-smile-day-thu-hai-cuoi-cung-cua-thang-thumbnail-w280.jpg" alt="big small day">
+                    <img src="uu_dai4.jpg" width="240px" height="200px" alt="big small day">
                     <h3>Thứ 2 cuối cùng của tháng</h3>
+                    <a href="#" class="ticket-button">Xem Khuyến Mãi</a>
                 </div>
             </a>
         </div>

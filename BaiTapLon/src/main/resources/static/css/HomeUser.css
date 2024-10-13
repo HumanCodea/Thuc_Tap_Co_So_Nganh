@@ -234,32 +234,14 @@ body {
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    margin-top: 20px;
 }
 
 .ticket-button:hover {
     background-color: #ff4500;
 }
-/* ---------------------------------------------------------------- */
-.promotions-section {
-    padding: 20px 0;
-    background-color: #f8f8f8;
-    text-align: center;
-}
 
-.promotions-section h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.promotions-list {
-    list-style-type: none;
-} 
-
-.promotions-list li {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
+/* footer */
 .footer-column {
     flex: 1 1 200px;
     margin: 0 20px;
