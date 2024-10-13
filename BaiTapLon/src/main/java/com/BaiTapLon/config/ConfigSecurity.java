@@ -24,7 +24,7 @@ public class ConfigSecurity {
             .requestMatchers("/home","/image/**","/js/**", "/css/**","/app/**","/fonts/**","/register","/saveUser").permitAll()
             .anyRequest().authenticated())
             .formLogin(login -> login.loginPage("/login")
-            .defaultSuccessUrl("/homeUser").permitAll()
+            .defaultSuccessUrl("/home").permitAll()
             )
             .logout(logout -> logout.invalidateHttpSession(true).clearAuthentication(true)
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

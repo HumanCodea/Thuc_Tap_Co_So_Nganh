@@ -118,17 +118,17 @@
 <body>
     <div class="container">
         <h1>ĐĂNG KÝ</h1>
-        <form>
+        <form  th:action="@{/saveUser}" method="post">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="phone">Số điện thoại:</label>
-                        <input type="text" id="phone" name="phone">
+                        <label for="phoneNumber">Số điện thoại:</label>
+                        <input type="text" id="phone" name="phoneNumber">
                         <p class="checkall" id="checkphone">*Không hợp lệ.</p>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email">
+                        <input type="text" id="email" name="email">
                         <p class="checkall" id="checkemail">*Không hợp lệ.</p>
                     </div>
                     <div class="form-group">
@@ -149,8 +149,8 @@
                 <div class="col">
                     <div class="form-group">
                         <div class="form-group">
-                            <label for="name">Họ và tên</label>
-                            <input type="text" id="name" name="name">
+                            <label for="username">Họ và tên</label>
+                            <input type="text" id="name" name="username">
                         </div>
                         <div class="form-group">
                             <label for="date">Ngày sinh</label>
