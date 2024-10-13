@@ -6,39 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{./css/HomeUser.css}">
     <link th:href="@{https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css}" rel='stylesheet'>
-    <title>Home User</title>
+    <title>Trang Chủ</title>
 </head>
 <body>
+
+    <style>
+        .footer-container{
+            display: flex;
+            justify-content: space-between;
+            background-color: #222;
+            background-image: url(./image/footer.png) ;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #fe025c;
+            padding: 40px 20px;
+            flex-wrap: wrap; 
+        }
+    </style>
 
     <nav class="top-nav">
         <div class="nav-container">
             <div class="logo">
-                <img src="logo_nhom2.jpg" alt="Logo">
+                <img th:src="@{./image/logo.png}" alt="Logo">
             </div>
             <div class="search-bar">
                 <input type="text" placeholder="Tìm kiếm phim...">
                 <button class="search-button">Tìm kiếm</button>
             </div>
             <div class="auth-buttons">
-                <button class="login-button"><a th:href="@{/login}" style="color: white;text-decoration: none;">Đăng nhập</a></button>
-                <button class="register-button"><a href="" style="color: white;text-decoration: none;">Đăng ký</a></button>
+                <button class="login-button"><a th:href="@{/login}">Đăng nhập</a></button>
+                <button class="register-button"><a th:href="@{/register}">Đăng ký</a></button>
             </div>
         </div>
     </nav>
     <nav class="bottom-nav">
         <ul>
-            <li><a href="#">Trang chủ</a></li>
-            <li><a href="#">Danh sách phim</a></li>
-            <li><a href="#">Phim của tôi</a></li>
-            <li><a href="#">Ưu đãi</a></li>
+            <li><a href="#">Trang Chủ</a></li>
+            <li><a href="#">Phim đang chiếu</a></li>
+            <li><a href="#">Phim Sắp Chiếu</a></li>
+            <li><a href="#">Ưu Đãi</a></li>
         </ul>
     </nav>
-    
+
 
     <section class="banner-section">
         <i class='bx bxs-chevron-left'></i>
         <div class="banner-container" style="width: 4512px; left: 0px; display: block;">
-            <div class="banner-item"><img src="transformers1BANNER.jpg" alt="Phim 1"></div>
+            <div class="banner-item"><img th:src="@{./image/anh13.png}" alt="Phim 1"></div>
             <!-- <div class="banner-item hide"><img src="phim2.jpg" alt="Phim 2"></div>
             <div class="banner-item"><img src="phim_cam.jpg" alt="Phim 5"></div>
             <div class="banner-item"><img src="phim3.jpg" alt="Phim 3"></div>
@@ -50,63 +64,108 @@
     <section class="movies-section">
         <h2>Phim Đang Chiếu</h2>
         <div class="movies-container">
-            <div class="movie-item">
-                <img src="caubecaheoPOSTER.jpg" alt="Phim Đang Chiếu 1">
-                <h3>Cậu Bé Cá Heo</h3>
-                <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-            </div>
-            <div class="movie-item">
-                <img src="modomdomPOSTER.jpg" alt="Phim Đang Chiếu 2">
-                <h3>Mộ Đom Đóm</h3>
-                <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-            </div>
-            <div class="movie-item">
-                <img src="kumanthong2024POSTER.jpg" alt="Phim Đang Chiếu 3">
-                <h3>Ku Ma Thong 2024</h3>
-                <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-            </div>
-            <div class="movie-item">
-                <img src="phepmaugiuademdongPOSTER.jpg" alt="Phim Đang Chiếu 4">
-                <h3>Phép Màu Giữa Đêm Đông</h3>
-                <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-            </div>
+            <a class="click-watch" href="#">
+                <div class="movie-item">
+                    <img th:src="@{./image/anh2.png}" alt="Phim Đang Chiếu 1">
+                    <h3>Cậu Bé Cá Heo</h3>
+                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
+                </div>
+            </a>
+
+            <a class="click-watch" href="#">
+                <div class="movie-item">
+                    <img th:src="@{./image/anh1.png}" alt="Phim Đang Chiếu 2">
+                    <h3>Mộ Đom Đóm</h3>
+                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
+                </div>
+            </a>
+
+            <a class="click-watch" href="#">
+                <div class="movie-item">
+                    <img th:src="@{./image/anh2.png}" alt="Phim Đang Chiếu 3">
+                    <h3>Ku Ma Thong 2024</h3>
+                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
+                </div>
+            </a>
+
+            <a class="click-watch" href="#">
+                <div class="movie-item">
+                    <img th:src="@{./image/anh2.png}" alt="Phim Đang Chiếu 4">
+                    <h3>Phép Màu Giữa Đêm Đông</h3>
+                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
+                </div>
+            </a>
         </div>
     </section>
 
-    <section class="movies-section">
+    <section class="movies-section"> 
         <h2>Phim Sắp Chiếu</h2>
         <div class="movies-container">
-            <div class="movie-item">
-                <img src="jokerPOSTER.jpg" alt="Phim Sắp Chiếu 1">
-                <h3>Joker</h3>
-                <a href="#" class="ticket-button">Xem Chi Tiết</a>
-            </div>
-            <div class="movie-item">
-                <img src="RobothoangdaPOSTER.jpg" alt="Phim Sắp Chiếu 2">
-                <h3>Robot Hoang Dã</h3>
-                <a href="#" class="ticket-button">Xem Chi Tiết</a>
-            </div>
-            <div class="movie-item">
-                <img src="docongduoctoiPOSTER.jpg" alt="Phim Sắp Chiếu 3">
-                <h3>Đố Còng Được Tôi</h3>
-                <a href="#" class="ticket-button">Xem Chi Tiết</a>
-            </div>
-            <div class="movie-item">
-                <img src="camPOSTER.jpg" alt="Phim Sắp Chiếu 4">
-                <h3>Cám</h3>
-                <a href="#" class="ticket-button">Xem Chi Tiết</a>
-            </div>
+            <a class="click-watch" href="#">
+                <div class="movie-item">
+                    <img th:src="@{./image/anh2.png}" alt="Phim Sắp Chiếu 1">
+                    <h3>Joker</h3>
+                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
+                </div>
+            </a>
+
+            <a class="click-watch" href="#">
+                <div class="movie-item">
+                    <img th:src="@{./image/anh2.png}" alt="Phim Sắp Chiếu 2">
+                    <h3>Robot Hoang Dã</h3>
+                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
+                </div>
+            </a>
+
+            <a class="click-watch" href="#">
+                <div class="movie-item">
+                    <img th:src="@{./image/anh2.png}" alt="Phim Sắp Chiếu 3">
+                    <h3>Đố Còng Được Tôi</h3>
+                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
+                </div>
+            </a>
+
+            <a class="click-watch" href="#">
+                <div class="movie-item">
+                    <img th:src="@{./image/anh2.png}" alt="Phim Sắp Chiếu 4">
+                    <h3>Cám</h3>
+                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
+                </div>
+            </a>
         </div>
     </section>
 
     <section class="promotions-section">
         <h2>Khuyến Mãi</h2>
-        <ul class="promotions-list">
-            <li>Khuyến Mãi 1: Mua 1 Vé Tặng 1 Bắp</li>
-            <li>Khuyến Mãi 2: Giảm Giá 20% Khi Mua 3 Vé</li>
-            <li>Khuyến Mãi 3: Vé Xem Phim Cuối Tuần Chỉ 49K</li>
-            <li>Khuyến Mãi 4: Combo Nước Và Bắp Siêu Rẻ</li>
-        </ul>
+        <div class="movies-container">
+            <a href="#">
+                <div class="movie-item">
+                    <img src="https://rapchieuphim.com//photos/promotion/thumbs/uu-dai-thanh-vien-2022-thumbnail-w280.jpg" alt="ưu đãi thành viên">
+                    <h3>Ưu đãi  thành viên của rạp</h3>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="movie-item">
+                    <img src="https://rapchieuphim.com//photos/promotion/thumbs/uu-dai-thanh-vien-u22-thumbnail-w280.jpg" alt="ưu đãi u22">
+                    <h3>Ưu đãi thành viên U22</h3>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="movie-item">
+                    <img src="https://rapchieuphim.com//photos/promotion/thumbs/lovely-tuesday-thumbnail-w280.jpg" alt="lovely tuesday">
+                    <h3>Lovely tuesday</h3>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="movie-item">
+                    <img src="https://rapchieuphim.com//photos/promotion/thumbs/big-smile-day-thu-hai-cuoi-cung-cua-thang-thumbnail-w280.jpg" alt="big small day">
+                    <h3>Thứ 2 cuối cùng của tháng</h3>
+                </div>
+            </a>
+        </div>
     </section>
 
     <footer>
@@ -119,7 +178,7 @@
                     <li><a href="#">Các câu hỏi thường gặp</a></li>
                 </ul>
             </div>
-    
+
             <div class="footer-column">
                 <h3>Điều khoản sử dụng</h3>
                 <ul>
@@ -128,12 +187,14 @@
                     <li><a href="#">Chính sách bảo mật</a></li>
                 </ul>
             </div>
-    
+
             <div class="footer-column">
                 <h3>Kết nối với chúng tôi</h3>
                 <div class="social-icons">
-                    <a href="#"><img src="facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="youtube.png" alt="YouTube"></a>
+                    <a class="list-icon" href="#"><i class='bx bxl-facebook-circle' style='color:#ffffff' ></i></a>
+                    <a class="list-icon" href="#"><i class='bx bxl-instagram' style='color:#ffffff' ></i></a>
+                    <a class="list-icon" href="#"><i class='bx bxl-youtube' style='color:#ffffff' ></i></a>
+                    <a class="list-icon" href="#"><i class='bx bxl-twitter' style='color:#ffffff' ></i></a>
                 </div>
             </div>
             <div class="footer-column">
@@ -144,12 +205,10 @@
                 </ul>
             </div>
         </div>
-        <hr>
         <div class="designer">
-            <p>© 2024 Nhom 2. All Rights Reserved.</p>
+            <p>© Copyright 2024 Rapchieuphim_nhom2</p>
         </div>
     </footer>
-
     
 </body>
 </html>

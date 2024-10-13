@@ -12,5 +12,12 @@ public class UserController {
     public String LoginScreen(){
         return "Login";
     }
+   
+    @GetMapping("/register")
+    public String Register(){
+        return "Register";
+    }
+
+    
 
 }

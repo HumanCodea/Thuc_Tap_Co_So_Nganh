@@ -13,4 +13,9 @@ public class HomeController {
         return "HomeUser";
     }
 
+    @GetMapping("/homeAdmin")
+    public String HomeAdmin(){
+        return "HomeAdmin";
+    }
+
 }

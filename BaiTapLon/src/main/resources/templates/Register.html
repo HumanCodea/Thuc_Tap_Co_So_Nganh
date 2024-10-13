@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <html lang="en" xmlns:th="https://www.thymeleaf.com"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            height: 100vh;
+            background-size: 400% 400%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg, #4974f5, #eb7bf4);
+            animation: galaxy 5s ease infinite;
+        }
+
+        @keyframes galaxy {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .container {
+            padding-top: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 900px;
+            height: 500px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .form-group input, .form-group select {
+            width: calc(100% - 20px);
+            max-width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group input[type="checkbox"] {
+            width: auto;
+        }
+        .form-group a {
+            color: blue;
+            text-decoration: none;
+        }
+        .form-group a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group-check{
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .form-group-check label{
+            margin-bottom: 0;
+            margin-left: 10px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-around;
+        }
+        .row .col {
+            flex: 0 0 40%;
+        }
+        .submit-btn {
+            width: 300px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        .check{
+            margin-bottom: 20px;
+        }
+        .checkall{
+            font-size: 10px;
+            color: white;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>ĐĂNG KÝ</h1>
+        <form>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại:</label>
+                        <input type="text" id="phone" name="phone">
+                        <p class="checkall" id="checkphone">*Không hợp lệ.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email">
+                        <p class="checkall" id="checkemail">*Không hợp lệ.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mật khẩu:</label>
+                        <input type="password" id="password" name="password" >
+                    </div>
+                    <div class="check">
+                        <p id="check1">- Có 8 đến 16 ký tự.</p>
+                    </div>
+                    <div class="check">
+                        <p id="check2">- Ít nhất 1 chữ in hoa, 1 chữ thường.</p>
+                    </div>
+                    <div class="check">
+                        <p id="check3">- Ít nhất 1 chữ số ký tự đặc biệt.</p>
+                    </div>
+                    
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="name">Họ và tên</label>
+                            <input type="text" id="name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Ngày sinh</label>
+                            <input type="date" id="date" name="date">
+                        </div>
+                        <div class="form-group-check">
+                            <input type="checkbox" id="checkbox" name="checkbox">
+                            <label for="checkbox">Tôi đồng ý với mọi <a href="#">Điều khoản</a>.</label>
+                        </div>
+                        <div>
+                            <button disabled type="submit" id="submit-btn" class="submit-btn">Đăng ký</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    const passwordinput= document.getElementById('password');
+    const check1=document.getElementById('check1');
+    const check2=document.getElementById('check2');
+    const check3=document.getElementById('check3');
+    passwordinput.addEventListener('input',function(){
+        const x =passwordinput.value;
+        if(x.length>=8 && x.length<=16){
+            check1.style.color='green';
+        }else{
+            check1.style.color='red';
+        }
+        if (/[a-z]/.test(x) && /[A-Z]/.test(x)) {
+            check2.style.color = 'green';
+        } else {
+            check2.style.color = 'red';
+        }
+    
+        if (/\d/.test(x)&&/[!@#$%^&*(),.?":{}|<>]/.test(x)) {
+            check3.style.color = 'green';
+        } else {
+            check3.style.color = 'red';
+        }
+    });
+
+    const sdt= document.getElementById('phone');
+    const checkphone=document.getElementById('checkphone');
+    sdt.addEventListener('input',function(){
+        const y =sdt.value;
+        if (/[a-z]/.test(y) || /[A-Z]/.test(y) || /[!@#$%^&*(),.?":{}|<>]/.test(y)) {
+            checkphone.style.color = 'red'; 
+        } else {
+            checkphone.style.color = 'white'; 
+        }
+    });
+
+    const emai= document.getElementById('email');
+    const checkemail=document.getElementById('checkemail');
+    email.addEventListener('input',function(){
+        const z =email.value;
+        if (/^.+@gmail\.com$/.test(z)) {
+            checkemail.style.color = 'white'; 
+        } else {
+            checkemail.style.color = 'red'; 
+        }
+    });
+    
+    const checkbox = document.getElementById('checkbox');
+    const submitBtn = document.getElementById('submit-btn');
+        
+        checkbox.addEventListener('change', function(){
+            submitBtn.disabled = !checkbox.checked;
+        });
+
+</script>

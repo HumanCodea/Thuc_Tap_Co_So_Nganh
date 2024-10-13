@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -77,6 +77,12 @@ body {
 .auth-buttons .login-button {
     background-color: #59a3d4; 
 }
+
+.auth-buttons .login-button a{
+    text-decoration: none;
+    color: white;
+}
+
 .login-button:hover{
     background-color:#0798f8 ;
 }
@@ -84,6 +90,12 @@ body {
 .auth-buttons .register-button {
     background-color: #e74c3c; 
 }
+
+.auth-buttons .register-button a{
+    text-decoration: none;
+    color: white;
+}
+
 .register-button:hover{
     background-color:#f3230c ;
 }
@@ -175,6 +187,7 @@ body {
     border-radius: 10px;
 }
 
+/* movie section */
 .movies-section {
     padding: 40px 20px;
 }
@@ -190,7 +203,9 @@ body {
     justify-content: space-around;
     flex-wrap: wrap;
 }
-
+.click-watch {
+    text-decoration: none;
+}
 .movie-item {
     width: 200px;
     text-align: center;
@@ -208,6 +223,7 @@ body {
 .movie-item h3 {
     font-size: 18px;
     margin: 10px 0;
+    color: black;
 }
 
 .ticket-button {
@@ -223,7 +239,7 @@ body {
 .ticket-button:hover {
     background-color: #ff4500;
 }
-
+/* ---------------------------------------------------------------- */
 .promotions-section {
     padding: 20px 0;
     background-color: #f8f8f8;
@@ -237,20 +253,11 @@ body {
 
 .promotions-list {
     list-style-type: none;
-}
+} 
 
 .promotions-list li {
     font-size: 18px;
     margin-bottom: 10px;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    background-color: #222;
-    color: white;
-    padding: 40px 20px;
-    flex-wrap: wrap; 
 }
 
 .footer-column {
@@ -273,7 +280,7 @@ body {
 }
 
 .footer-column ul li a {
-    color: white;
+    color: gray;
     text-decoration: none;
 }
 
@@ -285,36 +292,29 @@ body {
     display: flex;
     gap: 10px;
 }
-
+.list-icon {
+    width: 30px;
+    height: 30px;
+}
 .social-icons a img {
     width: 32px;
     height: 32px;
 }
-
 /* Hotline */
 .footer-column ul li a {
-    color: #f1c40f; 
+    color: gray; 
     text-decoration: none;
     font-weight: bold;
 }
-
 .footer-column ul li a:hover {
     text-decoration: underline;
 }
-
-hr {
-    border: 0;
-    border-top: 1px solid #444;
-    margin: 20px 0;
-}
-
 .designer {
     text-align: center;
     padding: 10px 0;
     background-color: #111;
     color: #ccc;
 }
-
 .designer p {
     margin: 0;
 }

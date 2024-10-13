@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+    <html lang="en" xmlns:th="https://www.thymeleaf.com"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{./css/HomeAdmin.css}">
+    <title>Quản Lý Rạp Phim</title>
+    <link th:href='@{https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css}' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bx-film'></i>
+                <div class="logo_name"> NHÓM_2</div>
+            </div>
+            <i class='bx bx-menu' id="btn" style="cursor: pointer;"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Search...">
+            </li>
+            <li>
+                <a href="#" id="movie">
+                    <i class='bx bx-movie'></i>
+                    <span class="links_name">Bảo Trì Phim</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="calendar">
+                    <i class='bx bx-calendar'></i>
+                    <span class="links_name">Bảo Trì Suất Chiếu</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Quản Lý Khách Hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-chair'></i>
+                    <span class="links_name">Bảo Trì Phòng Chiếu</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-discount'></i>
+                    <span class="links_name">Bảo Trì Khuyến Mãi</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-cake'></i>
+                    <span class="links_name">Bảo Trì Đồ Ăn</span>
+                </a>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <img th:src="@{./image/auth_img/bgr_admin1.avif}">
+                    <div class="name_job">
+                        <div class="name">Hello Admin</div>
+                        <div class="job">Admin</div>
+                    </div>
+                </div>
+                <i class="bx bx-log-out" id="log_out" style="cursor: pointer;"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="sum" id="content_film">
+        <div id="movies">
+            <h2>Bảo Trì Phim</h2>
+            <br>
+            <input class="create-film" type="button" value="Thêm phim mới" onclick="msg()">
+            <br>
+            <table class="table-film">
+                <thead>
+                    <tr>
+                        <th>Tên phim</th>
+                        <th>Lịch chiếu</th>
+                        <th>Hãng sản xuất</th>
+                        <th>Chi tiết phim</th>
+                        <th>Hành động</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
+                            <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
+                            <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
+                            <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
+                            <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="sum" id="part_film">
+            <div id="part">
+                <h2>Bảo Trì Suất Chiếu</h2>
+                <br>
+                <input class="create-film" type="button" value="Thêm suất chiếu mới" onclick="msg()">
+                <br>
+                <table class="table-film">
+                    <thead>
+                        <tr>
+                            <th>Tên phim</th>
+                            <th>Thời gian</th>
+                            <th>Phòng chiếu</th>
+                            <th>Giá vé</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
+                                <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
+                                <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
+                                <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
+                                <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search");
+
+        btn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+
+        searchBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+
+        const showTableFilm = document.getElementById("movie")
+        const showPartFilm = document.getElementById("calendar")
+        const content_film = document.getElementById("content_film")
+        const part_film = document.getElementById("part_film")
+
+        showTableFilm.onclick = function () {
+            content_film.style.display = content_film.style.display === "none" ? "block" : "none";
+            part_film.style.display = "none";
+        }
+        showPartFilm.onclick = function(){
+            part_film.style.display = part_film.style.display === "none" ? "block" : "none";
+            content_film.style.display = "none";
+
+        }
+
+    </script>
+</body>
+
+</html>
