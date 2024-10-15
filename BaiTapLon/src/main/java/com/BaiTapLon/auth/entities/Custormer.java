@@ -22,7 +22,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Custormer {
+public class Custormer{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

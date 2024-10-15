@@ -9,13 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     
     @GetMapping("/home")
-    public String HomeUser(){
-        return "HomeUser";
+    public String Home(){
+        return "Home";
     }
 
     @GetMapping("/homeAdmin")
     public String HomeAdmin(){
         return "HomeAdmin";
+    }
+
+    @GetMapping("/homeUser")
+    public String HomeUser(){
+        return "HomeUser";
     }
 
 }
