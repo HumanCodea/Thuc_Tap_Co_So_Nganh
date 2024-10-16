@@ -60,6 +60,78 @@
         .hide{
             display: none;
         }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .movie-details {
+            width: 920px;
+            background-color: #fff;
+            margin: 20px auto;
+            padding: 16px;
+            box-shadow: 0 0 10px #ccc;
+            
+        }
+        .movie-details-content {
+            display: flex;
+        }
+        .movie-text {
+            font-size: 30px;
+            font-weight: 500;
+            padding-bottom: 16px;
+        }
+        .movie-booking-img {
+            margin-right: 30px;
+            width: 260px;
+            text-align: center;
+        }
+
+        .movie-img {
+            width: 100%;
+            border-radius: 4px;
+            /* height: 236px; */
+        }
+        .movie-booking {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 26px;
+            margin-top: 16px;
+            color: #fff;
+            background-color: #f44336;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+        .movie-conten {
+            flex: 1;
+        }
+        .movie-name {
+            font-size: 24px;
+            letter-spacing: 2px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #333;
+        }
+        .movie-info {
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        .movie-director {
+            margin-top: 4px;
+        }
+        .movie-info > span,
+        .movie-descript {
+            font-weight: 400;
+        }
+        .movie-descript {
+            margin-top: 16px;
+            text-align: justify;
+        }
+        .movie-booking:hover {
+            opacity: 0.7;
+        }
     </style>
 
     <nav class="top-nav">
@@ -90,7 +162,7 @@
     </nav>
     <nav class="bottom-nav">
         <ul>
-            <li><a href="#">Trang Chủ</a></li>
+            <li><a th:href="@{/homeUser}">Trang Chủ</a></li>
             <li><a th:href="@{/phimDangChieu}">Phim đang chiếu</a></li>
             <li><a th:href="@{/phimSapChieu}">Phim Sắp Chiếu</a></li>
             <li><a href="#">Ưu Đãi</a></li>
@@ -98,128 +170,47 @@
     </nav>
 
 
-    <section class="banner-section">
-        <i class='bx bxs-chevron-left'></i>
-        <div class="banner-container" style="width: 4512px; left: 0px; display: block;">
-            <div class="banner-item"><img th:src="@{./image/anh13.png}" alt="Phim 1"></div>
-            <!-- <div class="banner-item hide"><img src="phim2.jpg" alt="Phim 2"></div>
-            <div class="banner-item"><img src="phim_cam.jpg" alt="Phim 5"></div>
-            <div class="banner-item"><img src="phim3.jpg" alt="Phim 3"></div>
-            <div class="banner-item"><img src="phim4.jpg" alt="Phim 4"></div> -->
+<div class="body">
+        <div class="movie-details">
+            <p class="movie-text">Chi tiết phim</p>
+            <div class="movie-details-content">
+                <div class="movie-booking-img">
+                    <img src="./mdd.jpg" alt="" class="movie-img">
+                    <a href="" class="movie-booking">
+                        Buy Ticket
+                    </a>
+                </div>
+                <div class="movie-conten">
+                    <div class="movie-name">
+                        MỘ ĐOM ĐÓM
+                    </div>
+                    <div class="movie-director movie-info">
+                        Đạo diễn: <span>Takahata Isao</span>
+                    </div>
+                    <div class="movie-actor movie-info">
+                        Diễn viên: <span>Tatsumi Tsutomu, Shiraishi Ayano, Shinohara Yoshiko</span>
+                    </div>
+                    <div class="movie-genre movie-info">
+                        Thể loại: <span>Hoạt hình</span>
+                    </div>
+                    <!-- <div class="movie-language movie-info">
+                        Ngôn ngữ: <span>Tiếng Nhật - Phụ đề Tiếng Việt</span>
+                    </div> -->
+                    <div class="movie-time movie-info">
+                        Thời gian: <span>89 phút</span>
+                    </div>
+                    <!-- <div class="movie-release movie-info">
+                        Khởi chiếu: <span>04/10/2024</span>
+                    </div> -->
+                    <p class="movie-descript movie-info">
+                        Hai anh em Seita và Setsuko mất mẹ sau cuộc thả bom dữ dội của không quân Mỹ. Cả hai phải vật lộn để tồn tại ở Nhật Bản hậu Thế chiến II. Nhưng xã hội khắc nghiệt và chúng vật lộn tìm kiếm thức ăn cũng như thoát khỏi những khó khăn giữa chiến tranh.
+                    </p>
+                </div>
+            </div>
         </div>
-        <i class='bx bxs-chevron-right'></i>
-    </section>
-
-    <section class="movies-section">
-        <h2>Phim Đang Chiếu</h2>
-        <div class="movies-container">
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh2.png}" alt="Phim Đang Chiếu 1">
-                    <h3>Cậu Bé Cá Heo</h3>
-                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh1.png}" alt="Phim Đang Chiếu 2">
-                    <h3>Mộ Đom Đóm</h3>
-                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh2.png}" alt="Phim Đang Chiếu 3">
-                    <h3>Ku Ma Thong 2024</h3>
-                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh2.png}" alt="Phim Đang Chiếu 4">
-                    <h3>Phép Màu Giữa Đêm Đông</h3>
-                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-                </div>
-            </a>
         </div>
-    </section>
 
-    <section class="movies-section"> 
-        <h2>Phim Sắp Chiếu</h2>
-        <div class="movies-container">
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh2.png}" alt="Phim Sắp Chiếu 1">
-                    <h3>Joker</h3>
-                    <a th:href="@{/movieDetail}" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
 
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh2.png}" alt="Phim Sắp Chiếu 2">
-                    <h3>Robot Hoang Dã</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh2.png}" alt="Phim Sắp Chiếu 3">
-                    <h3>Đố Còng Được Tôi</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh2.png}" alt="Phim Sắp Chiếu 4">
-                    <h3>Cám</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <section class="movies-section"> 
-        <h2>Khuyến Mãi</h2>
-        <div class="movies-container">
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img src="uu_dai.jpg" width="240px" height="200px" alt="ưu đãi thành viên">
-                    <h3>Ưu đãi  thành viên của rạp</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img src="uu_dai2.jpg" width="240px" height="200px" alt="ưu đãi u22">
-                    <h3>Ưu đãi thành viên U22</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img src="uu_dai3.jpg" width="240px" height="200px" alt="lovely tuesday">
-                    <h3>Lovely tuesday</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img src="uu_dai4.jpg" width="240px" height="200px" alt="big small day">
-                    <h3>Thứ 2 cuối cùng của tháng</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
-        </div>
-    </section>
 
     <footer>
         <div class="footer-container">

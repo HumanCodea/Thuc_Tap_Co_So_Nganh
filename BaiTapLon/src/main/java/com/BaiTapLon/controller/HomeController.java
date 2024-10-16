@@ -44,6 +44,18 @@ public class HomeController {
         return "HomeUser";
     }
 
+    @GetMapping("/movieDetail")
+    public String MoiveDetail(Model model){
+
+        String email = getUsername();
+
+        String username = custormerService.findByUsername(email);
+
+        model.addAttribute("name", username);
+        
+        return "MoiveDetail";
+    }
+
     public String getUsername(){
         String email = null;
 
