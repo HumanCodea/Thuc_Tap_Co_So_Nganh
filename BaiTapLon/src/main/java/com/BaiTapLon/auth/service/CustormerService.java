@@ -54,4 +54,8 @@ public class CustormerService implements UserDetailsService{
         custormerRepository.save(custormer);
     }
 
+    public String findByUsername(String email){
+        return custormerRepository.findByUsername(email);
+    }
+
 }

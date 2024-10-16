@@ -69,7 +69,9 @@
                         <div class="job">Admin</div>
                     </div>
                 </div>
-                <i class="bx bx-log-out" id="log_out" style="cursor: pointer;"></i>
+                <a ces:authorize="isAuthenticated()" class="sign_out" th:href="@{/logout}" style="color: white;" title="Logout">
+                    <i class="bx bx-log-out" id="log_out"></i>
+                </a>
             </div>
         </div>
     </div>
