@@ -8,10 +8,12 @@
 }
 
 body {
-    position: relative;
     min-height: 100vh;
     width: 100%;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .sidebar {
@@ -249,43 +251,17 @@ body {
     background: #1d1b31;
 }
 
-.home_content {
-    /* absolute cho phep sua doi top bottom ... */
-    position: absolute;
-    height: 100%;
-    top: 30%;
-    width: calc(100% - 78px);
-    left: 78px;
-    transition: all 0.5s ease;
+.container{
+    margin-right: 150px;
+    transition: all 0.4s ease;
 }
 
-.sidebar.active~.home_content {
-    width: calc(100% - 240px);
-    left: 240px;
+.large{
+    margin-right: 30px;
 }
 
-/* table film */
-.sum {
-    padding-left: 100px;
-    display: none;
-}
-
-.table {
+.container img{
     width: 100%;
-}
-
-table,
-td,
-th {
-    border: 1px solid #333;
-    border-collapse: collapse;
-}
-
-td,
-th {
-    padding: 6px 10px;
-}
-
-table thead th {
-    text-align: center;
+    height: 100%;
+    object-fit: cover;
 }

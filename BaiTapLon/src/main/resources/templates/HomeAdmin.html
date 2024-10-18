@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <div class="tt"></div>
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
@@ -75,167 +76,26 @@
             </div>
         </div>
     </div>
-
-
-    <div class="sum" id="content_film">
-        <div id="movies">
-            <h2>Bảo Trì Phim</h2>
-            <br>
-            <input class="create-film" type="button" value="Thêm phim mới" onclick="msg()">
-            <br>
-            <table class="table-film">
-                <thead>
-                    <tr>
-                        <th>Tên phim</th>
-                        <th>Lịch chiếu</th>
-                        <th>Hãng sản xuất</th>
-                        <th>Chi tiết phim</th>
-                        <th>Hành động</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
-                            <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
-                            <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
-                            <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
-                            <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-        </div>
-
-        <div class="sum" id="part_film">
-            <div id="part">
-                <h2>Bảo Trì Suất Chiếu</h2>
-                <br>
-                <input class="create-film" type="button" value="Thêm suất chiếu mới" onclick="msg()">
-                <br>
-                <table class="table-film">
-                    <thead>
-                        <tr>
-                            <th>Tên phim</th>
-                            <th>Thời gian</th>
-                            <th>Phòng chiếu</th>
-                            <th>Giá vé</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
-                                <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
-                                <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
-                                <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <i class='bx bx-edit' title="Sửa" style="cursor: pointer; margin-right: 10px;"></i>
-                                <i class='bx bx-trash' title="Xóa" style="cursor: pointer;"></i>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-
+    <div class="container">
+        <img th:src="@{./image/auth_img/header.png}" alt="">
     </div>
-
-    <script>
-
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-        let searchBtn = document.querySelector(".bx-search");
-
-        btn.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
-
-        searchBtn.onclick = function () {
-            sidebar.classList.toggle("active");
-        }
-
-        const showTableFilm = document.getElementById("movie")
-        const showPartFilm = document.getElementById("calendar")
-        const content_film = document.getElementById("content_film")
-        const part_film = document.getElementById("part_film")
-
-        showTableFilm.onclick = function () {
-            content_film.style.display = content_film.style.display === "none" ? "block" : "none";
-            part_film.style.display = "none";
-        }
-        showPartFilm.onclick = function(){
-            part_film.style.display = part_film.style.display === "none" ? "block" : "none";
-            content_film.style.display = "none";
-
-        }
-
-    </script>
 </body>
+<script>
 
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+    let searchBtn = document.querySelector(".bx-search");
+    let container = document.querySelector(".container")
+
+    btn.onclick = function () {
+        sidebar.classList.toggle("active");
+        container.classList.toggle("large")
+    }
+
+    searchBtn.onclick = function () {
+        sidebar.classList.toggle("active");
+        container.classList.toggle("large")
+    }
+
+</script>
 </html>
