@@ -79,40 +79,30 @@
     </div>
    
     <div class="content">
-        <h1>Danh sách phim</h1>
-        <p>Danh sách phim trên hệ thống bao gồm phim sắp chiếu và phim đang được chiếu</p>
-        <button style="margin-left: 925px;">Thêm phim mới</button>
+        <h1>Danh sách phòng chiếu</h1>
+        <p>Danh sách phòng chiếu bao gồm thông tin các phòng chiếu đang hiện có ở rạp chiếu phim</p>
+        <button style="margin-left: 925px;">Thêm phòng chiếu mới</button>
         <hr>
         <div class="container my-5">
             <table class="table table-striped table-hover align-middle" style="text-align: center;">
                 <thead>
                     <tr>
-                        <th scope="col">Mã Phim</th>
-                        <th scope="col">Tên Phim</th>
-                        <th scope="col">Thể Loại</th>
-                        <th scope="col">Đạo Diễn</th>
-                        <th scope="col">Diễn Viên</th>
-                        <th scope="col">Thời Lượng</th>
-                        <th scope="col">Khởi Chiếu</th>
-                        <th scope="col">Poster</th>
+                        <th scope="col">Mã Phòng</th>
+                        <th scope="col">Tên Phòng</th>
+                        <th scope="col">Tổng Ghế</th>
+                        <th scope="col">Mô tả phòng</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="m :${Movie}">
-                        <td th:text="${m.movieId}"></td>
-                        <td th:text="${m.nameMovie}"></td>
-                        <td th:text="${m.typeMovie}"></td>
-                        <td th:text="${m.authorMovie}"></td>
-                        <td th:text="${m.movieCast}"></td>
-                        <td th:text="${m.timeMovie}"></td>
-                        <td th:text="${m.releaseMovie}"></td>
+                    <tr th:each="r :${Room}">
+                        <td th:text="${r.roomId}"></td>
+                        <td th:text="${r.roomName}"></td>
+                        <td th:text="${r.quantityChair}"></td>
+                        <td th:text="${r.detailRoom}"></td>
                         <td>
-                          <img th:src="@{'/image/' + ${m.posterMovie}}" alt="" width="100px">
-                        </td>
-                        <td>
-                          <a style="color: hsl(240, 100%, 60%)" th:href="@{/editList/{id}(id=${m.movieId})}" title="Edit Movie"><i class='bx bxs-edit ms-4'></i></a>
-                          <a style="color: hsl(0, 100%, 60%)" th:href="@{/deleteList/{id}(id=${m.movieId})}" title="Delete Movie"><i class='bx bx-trash ms-4'></i></a>
+                          <a style="color: hsl(240, 100%, 60%)" th:href="@{/editList/{id}(id=${r.roomId})}" title="Edit RoomMovie"><i class='bx bxs-edit ms-4'></i></a>
+                          <a style="color: hsl(0, 100%, 60%)" th:href="@{/deleteList/{id}(id=${r.roomId})}" title="Delete RoomMovie"><i class='bx bx-trash ms-4'></i></a>
                         </td>
                       </tr>
                 </tbody>
