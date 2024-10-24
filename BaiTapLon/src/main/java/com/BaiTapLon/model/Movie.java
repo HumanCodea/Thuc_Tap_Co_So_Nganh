@@ -1,10 +1,13 @@
 package com.BaiTapLon.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -54,4 +57,10 @@ public class Movie {
     @NotBlank(message = "Please provide movie's status")
     private String status;
 
+    @OneToMany(mappedBy = "movie")
+    private List<Ticket> ticket;
+
+    @OneToMany(mappedBy = "movie")
+    private List<ScreeningMovie> screeningMovies;
+    
 }

@@ -1,10 +1,13 @@
 package com.BaiTapLon.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,5 +34,11 @@ public class ScreeningRoom {
     @Column(nullable = false)
     @NotBlank(message = "This detail room field can not be blank")
     private String detailRoom;
+
+    @OneToMany(mappedBy = "screeningRoom")
+    private List<ScreeningMovie> screeningMovies;
+
+    @OneToMany(mappedBy = "screeningRoom")
+    private List<Seats> seats;
 
 }

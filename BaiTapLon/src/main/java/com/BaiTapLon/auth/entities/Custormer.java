@@ -1,6 +1,9 @@
 package com.BaiTapLon.auth.entities;
 
+import java.util.List;
+
 import com.BaiTapLon.auth.util.UserRoles;
+import com.BaiTapLon.model.Bill;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -51,5 +55,8 @@ public class Custormer{
     private UserRoles roles;
 
     private int money;
+
+    @OneToMany(mappedBy = "custormer")
+    private List<Bill> bills;
 
 }

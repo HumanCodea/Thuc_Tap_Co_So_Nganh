@@ -2,14 +2,11 @@ package com.BaiTapLon.model;
 
 import java.util.List;
 
-import com.BaiTapLon.auth.entities.Custormer;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
@@ -23,28 +20,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Bill {
+public class Seats {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int billId;
+    private int seatId;
 
+    @NotBlank(message = "This chair name field can be not blank")
     @Column(nullable = false)
-    @NotBlank(message = "This buy date field can not be blank")
-    private String buyDate;
+    private String chairName;
 
-    private int totalMoney;
+    @NotBlank(message = "This chair status field can be not blank")
+    @Column(nullable = false)
+    private String chair_status;
 
-    @ManyToOne
-    private Custormer custormer;
-
-    @OneToMany(mappedBy = "bill")
+    @OneToMany(mappedBy = "seats")
     private List<Ticket> tickets;
 
     @ManyToOne
-    private Promotion promotion;
-
-    @ManyToMany(mappedBy = "bills")
-    private List<Food> food;
-
+    private ScreeningRoom screeningRoom;
+    
 }
