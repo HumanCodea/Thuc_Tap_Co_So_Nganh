@@ -58,4 +58,8 @@ public class CustormerService implements UserDetailsService{
         return custormerRepository.findByUsername(email);
     }
 
+    public List<Custormer> getAllCustormer(){
+        return custormerRepository.findAll();
+    }
+
 }

@@ -87,8 +87,8 @@
             <table class="table table-striped table-hover align-middle" style="text-align: center;">
                 <thead>
                     <tr>
-                        <th scope="col">Mã Khách Hàng</th>
-                        <th scope="col">Tên Khách Hàng</th>
+                        <th scope="col">Mã KH</th>
+                        <th scope="col">Tên KH</th>
                         <th scope="col">Ngày Sinh</th>
                         <th scope="col">Số ĐT</th>
                         <th scope="col">Email</th>
@@ -105,7 +105,7 @@
                         <td th:text="${c.email}"></td>
                         <td th:text="${c.roles}"></td>
                         <td>
-                          <a style="color: hsl(240, 100%, 60%)" th:href="@{/historyBill/{id}(id=${c.custormerId})}" title="History Bill"><i class='bx bxs-edit ms-4'></i></a>
+                          <a style="color: hsl(240, 100%, 60%)" th:href="@{/historyBill/{id}(id=${c.custormerId})}" title="History Bill">Xem lịch sử đặt vé</a>
                         </td>
                       </tr>
                 </tbody>
