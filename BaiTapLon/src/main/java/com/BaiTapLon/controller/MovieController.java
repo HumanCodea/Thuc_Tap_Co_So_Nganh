@@ -28,6 +28,9 @@ public class MovieController {
         return "ManageMovie";
     }
 
-
+    @GetMapping("/registerMovie")
+    public String RegisterMovie(){
+        return "RegisterMovie";
+    }
 
 }

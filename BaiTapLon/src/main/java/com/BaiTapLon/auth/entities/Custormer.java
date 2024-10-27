@@ -54,8 +54,6 @@ public class Custormer{
     @Enumerated(EnumType.STRING)
     private UserRoles roles;
 
-    private int money;
-
     @OneToMany(mappedBy = "custormer")
     private List<Bill> bills;
 

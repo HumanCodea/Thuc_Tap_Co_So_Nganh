@@ -50,7 +50,6 @@ public class CustormerService implements UserDetailsService{
         String newPassword = passwordEncoder.encode(custormer.getPassword());
         custormer.setPassword(newPassword);
         custormer.setRoles(UserRoles.USER);
-        custormer.setMoney(0);
         custormerRepository.save(custormer);
     }
 
