@@ -25,8 +25,10 @@ public class MovieDTO {
 
     private String timeMovie;
 
-    private String posterMovie;
+    private MultipartFile posterMovie;
 
-    private MultipartFile releaseMovie;
+    private String movieDetail;
+
+    private String releaseMovie;
 
 }

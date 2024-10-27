@@ -14,13 +14,13 @@
 
     <style>
         .form-container {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 1150px;
-            margin: 0 57px 0;
+            transition: all 0.4s ease;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
         }
 
         .form-container h2 {
@@ -151,38 +151,42 @@
    
 
     <div class="form-container">
-        <h2>Thêm Thông Tin Phim</h2>
-        <form id="addMovieForm">
+        <h2>Thêm Phim Mới</h2>
+        <form id="addMovieForm" enctype="multipart/form-data" th:object="${movieDTO}" method="post">
             <div class="form-group">
-                <label for="movieTitle">Tên phim:</label>
-                <input type="text" id="movieTitle" name="movieTitle" required>
+                <label for="nameMovie">Tên phim:</label>
+                <input type="text" id="movieTitle" name="nameMovie" required th:field="${movieDTO.nameMovie}">
             </div>
             <div class="form-group">
-                <label for="genre">Thể loại:</label>
-                <input type="text" id="genre" name="genre" required>
+                <label for="typeMovie">Thể loại:</label>
+                <input type="text" id="genre" name="typeMovie" required th:field="${movieDTO.typeMovie}">
             </div>
             <div class="form-group">
-                <label for="director">Đạo diễn:</label>
-                <input type="text" id="director" name="director" required>
+                <label for="authorMovie">Đạo diễn:</label>
+                <input type="text" id="director" name="authorMovie" required th:field="${movieDTO.authorMovie}">
             </div>
             <div class="form-group">
-                <label for="releaseDate">Ngày khởi chiếu:</label>
-                <input type="date" id="releaseDate" name="releaseDate" required>
+                <label for="releaseMovie">Ngày khởi chiếu:</label>
+                <input type="date" id="releaseDate" name="releaseMovie" required th:field="${movieDTO.releaseMovie}">
             </div>
             <div class="form-group">
-                <label for="actors">Diễn viên:</label>
-                <input type="text" id="actors" name="actors" required>
+                <label for="movieCast">Diễn viên:</label>
+                <input type="text" id="actors" name="movieCast" required th:field="${movieDTO.movieCast}">
             </div>
             <div class="form-group">
-                <label for="poster">Poster:</label>
-                <input type="file" id="poster" name="poster" accept="image/*" required>
+                <label for="timeMovie">Thời lượng (phút):</label>
+                <input type="text" id="duration" name="timeMovie" min="1"  th:field="${movieDTO.timeMovie}">
             </div>
             <div class="form-group">
-                <label for="duration">Thời lượng (phút):</label>
-                <input type="number" id="duration" name="duration" min="1" required>
+                <label for="movieDetail">Mô tả phim:</label>
+                <textarea style="width: 1110px;border: 1px solid #ccc;border-radius: 4px;padding: 8px;" rows="4" cols="50" id="detail" name="movieDetail" min="1"  th:field="${movieDTO.movieDetail}"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="posterMovie">Poster:</label>
+                <input type="file" id="poster" name="posterMovie" accept="image/*" required th:field="${movieDTO.posterMovie}">
             </div>
             <div class="form-actions">
-                <button type="button" class="submit-btn" onclick="submitForm()">Xác nhận thêm mới</button>
+                <button type="submit" class="submit-btn">Xác nhận thêm mới</button>
                 <button type="reset" class="reset-btn">Reset</button>
             </div>
         </form>
@@ -195,30 +199,27 @@
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
     let searchBtn = document.querySelector(".bx-search");
-    let container = document.querySelector(".container")
-    let content = document.querySelector(".content")
+    let container = document.querySelector(".form-container")
 
     btn.onclick = function () {
         sidebar.classList.toggle("active");
-        container.classList.toggle("large")
-        content.classList.toggle("large1")
+        container.classList.toggle("large1")
     }
 
     searchBtn.onclick = function () {
         sidebar.classList.toggle("active");
-        container.classList.toggle("large")
-        content.classList.toggle("large1")
+        container.classList.toggle("large1")
     }
 
-    function submitForm() {
-        const form = document.getElementById('addMovieForm');
-        if (form.checkValidity()) {
-            alert('Thông tin phim đã được thêm thành công!');
-            form.reset();
-        } else {
-            alert('Vui lòng điền đầy đủ thông tin.');
-        }
-    }
+    // function submitForm() {
+    //     const form = document.getElementById('addMovieForm');
+    //     if (form.checkValidity()) {
+    //         alert('Thông tin phim đã được thêm thành công!');
+    //         form.reset();
+    //     } else {
+    //         alert('Vui lòng điền đầy đủ thông tin.');
+    //     }
+    // }
 
 </script>
 </html>

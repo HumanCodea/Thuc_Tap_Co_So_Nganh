@@ -48,6 +48,10 @@ public class Movie {
     @Column(nullable = false)
     @NotBlank(message = "Please provide movie's poster")
     private String posterMovie;
+
+    @NotBlank(message = "Please provide movie's detail")
+    @Column(columnDefinition = "TEXT",nullable = false)
+    private String movieDetail;
     
     @Column(nullable = false)
     @NotBlank(message = "Please provide movie's release")
