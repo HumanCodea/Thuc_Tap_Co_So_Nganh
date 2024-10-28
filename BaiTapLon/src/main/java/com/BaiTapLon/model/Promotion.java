@@ -37,6 +37,10 @@ public class Promotion {
     @NotBlank(message = "This expirated field can not be blank")
     private String expirated;
 
+    @Column(nullable = false)
+    @NotBlank(message = "This promotion image field can not be blank")
+    private String promotionImage;
+
     @OneToMany(mappedBy = "promotion")
     private List<Bill> bills;
 
