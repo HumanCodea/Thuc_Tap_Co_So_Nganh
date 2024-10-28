@@ -18,4 +18,16 @@ public class FoodService {
         return foodRepository.findAll();
     }
 
+    public Food findFoodById(int id){
+        return foodRepository.findById(id).get();
+    }
+
+    public void saveFood(Food food){
+        foodRepository.save(food);
+    }
+
+    public void deleteFood(int id){
+        foodRepository.deleteById(id);
+    }
+
 }

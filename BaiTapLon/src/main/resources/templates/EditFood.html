@@ -156,44 +156,22 @@
    
 
     <div class="form-container">
-        <h2>Thay Đổi Thông Tin Phim</h2>
-        <form id="addMovieForm" enctype="multipart/form-data" th:action="@{/saveMovie}" method="post" th:object="${movie}">
-            <input type="hidden" name="movieId" th:value="${movie.movieId}"/>
-            <input type="hidden" name="posterMovie" th:value="${movie.posterMovie}"/>
+        <h2>Thay Đổi Thông Tin Đồ Ăn</h2>
+        <form id="addMovieForm" enctype="multipart/form-data" th:action="@{/saveFood}" method="post" th:object="${food}">
+            <input type="hidden" name="foodId" th:value="${food.foodId}"/>
+            <input type="hidden" name="foodImage" th:value="${food.foodImage}"/>
             <div class="form-group">
-                <label for="nameMovie">Tên phim:</label>
-                <input type="text" name="nameMovie" required th:value="${movie.nameMovie}">
+                <label for="nameFood">Tên đồ ăn:</label>
+                <input type="text" name="nameFood" required th:field="${food.nameFood}">
             </div>
             <div class="form-group">
-                <label for="typeMovie">Thể loại:</label>
-                <input type="text" name="typeMovie" required th:value="${movie.typeMovie}">
+                <label for="priceFood">Giá:</label>
+                <input type="number" name="priceFood" required th:field="${food.priceFood}">
             </div>
             <div class="form-group">
-                <label for="authorMovie">Đạo diễn:</label>
-                <input type="text" name="authorMovie" required th:value="${movie.authorMovie}">
-            </div>
-            <div class="form-group">
-                <label for="movieCast">Diễn viên:</label>
-                <input type="text" name="movieCast" required th:value="${movie.movieCast}">
-            </div>
-            <div class="form-row">
-                <div class="form-group" style="flex: 1">
-                    <label for="releaseMovie">Ngày khởi chiếu:</label>
-                    <input type="date" name="releaseMovie" required th:value="${movie.releaseMovie}">
-                </div>
-                <div class="form-group" style="flex: 1; margin-left: 15px;">
-                    <label for="timeMovie">Thời lượng (phút):</label>
-                    <input type="text" name="timeMovie" min="1"  th:value="${movie.timeMovie}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="movieDetail">Mô tả phim:</label>
-                <textarea style="width: 1110px;border: 1px solid #ccc;border-radius: 4px;padding: 8px;" rows="4" cols="50" name="movieDetail" min="1"  th:text="${movie.movieDetail}"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="posterFile">Poster:</label>
-                <input type="file" name="posterFile" accept="image/*">
-                <img th:src="@{'/image/' + ${movie.posterMovie}}" alt="Poster Old" style="max-width: 200px; max-height: 300px;"/>
+                <label for="foodFile">Image:</label>
+                <input type="file" name="foodFile" accept="image/*">
+                <img th:src="@{'/image/' + ${food.foodImage}}" alt="Image Old" style="max-width: 200px; max-height: 300px;"/>
             </div>
             <div class="form-actions">
                 <button style="margin-left: 40%;" type="submit" class="submit-btn">Xác nhận thêm mới</button>

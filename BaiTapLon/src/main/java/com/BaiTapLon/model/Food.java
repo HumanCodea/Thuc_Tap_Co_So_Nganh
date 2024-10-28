@@ -33,6 +33,10 @@ public class Food {
 
     private int priceFood;
 
+    @Column(nullable = false)
+    @NotBlank(message = "This food image field can not be blank")
+    private String foodImage;
+
     @ManyToMany
     @JoinTable(
         name = "bill_food",
