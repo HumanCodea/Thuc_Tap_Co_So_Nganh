@@ -111,8 +111,8 @@
                           <img th:src="@{'/image/' + ${m.posterMovie}}" alt="" width="100px">
                         </td>
                         <td>
-                          <a style="color: hsl(240, 100%, 60%)" th:href="@{/editList/{id}(id=${m.movieId})}" title="Edit Movie"><i class='bx bxs-edit ms-4'></i></a>
-                          <a style="color: hsl(0, 100%, 60%)" th:href="@{/deleteList/{id}(id=${m.movieId})}" title="Delete Movie"><i class='bx bx-trash ms-4'></i></a>
+                          <a style="color: hsl(240, 100%, 60%)" th:href="@{/editMovie/{id}(id=${m.movieId})}" title="Edit Movie"><i class='bx bxs-edit ms-4'></i></a>
+                          <a style="color: hsl(0, 100%, 60%)" th:href="@{/deleteMovie/{id}(id=${m.movieId})}" title="Delete Movie"><i class='bx bx-trash ms-4'></i></a>
                         </td>
                       </tr>
                 </tbody>

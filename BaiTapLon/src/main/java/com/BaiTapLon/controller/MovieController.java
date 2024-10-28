@@ -1,19 +1,21 @@
 package com.BaiTapLon.controller;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.BaiTapLon.dto.MovieDTO;
@@ -26,9 +28,6 @@ public class MovieController {
 
     @Autowired
     private MovieService movieService;
-
-    @Value("${project.poster}")
-    private String path;
     
     @GetMapping("/manageMoive")
     public String ManageMovie(Model model){
@@ -53,19 +52,9 @@ public class MovieController {
     @PostMapping("/registerMovie")
     public String SaveRegisterMovie(@ModelAttribute MovieDTO movieDTO) throws IOException{
 
-        MultipartFile file = movieDTO.getPosterMovie();
+        MultipartFile file = movieDTO.getPosterFile();
 
-        String fileName = file.getOriginalFilename();
-        
-        String filePath = path + File.separator + fileName;
-
-        File f = new File(path);
-
-        if (!f.exists()) {
-            f.mkdir();
-        }
-
-        Files.copy(file.getInputStream(), Paths.get(filePath));
+        upLoadFile(file);
 
         Movie movie = new Movie();
         movie.setNameMovie(movieDTO.getNameMovie());
@@ -76,11 +65,65 @@ public class MovieController {
         movie.setMovieDetail(movieDTO.getMovieDetail());
         movie.setReleaseMovie(movieDTO.getReleaseMovie());
         movie.setStatus("DC");
-        movie.setPosterMovie(fileName);
+        movie.setPosterMovie(file.getOriginalFilename());
 
         movieService.saveMovie(movie);
 
         return "redirect:/manageMoive";
+    }
+
+    @GetMapping("/editMovie/{id}")
+    public String EditMovie(@ModelAttribute("id") int id,Model model){
+
+        Movie movie = movieService.getMovieById(id);
+
+       model.addAttribute("movie", movie);
+
+        return "EditMovie";
+    }
+
+    @PostMapping("/saveMovie")
+    public String saveMovie(@ModelAttribute Movie movie,@RequestParam("posterFile") MultipartFile posterMovie){
+
+        if(!posterMovie.isEmpty()){
+            upLoadFile(posterMovie);
+            movie.setPosterMovie(posterMovie.getOriginalFilename());
+        }
+
+        movie.setStatus("DC");
+        movieService.saveMovie(movie);
+
+        return "redirect:/manageMoive";
+    }
+
+    @GetMapping("/deleteMovie/{id}")
+    public String DeleteMovie(@ModelAttribute("id") int id){
+
+        movieService.deteleMovie(id);
+
+        return "redirect:/manageMoive";
+    }
+
+    public void upLoadFile(MultipartFile file){
+
+        String fileName = file.getOriginalFilename();
+
+         try{
+            String uploadDir = "BaiTapLon/src/main/resources/static/image/";
+            Path uploadPath = Paths.get(uploadDir).toAbsolutePath();
+
+            if(!Files.exists(uploadPath)){
+                Files.createDirectories(uploadPath);
+            }
+
+            try(InputStream inputStream = file.getInputStream()){
+                Files.copy(inputStream, Paths.get(uploadDir + fileName),
+                    StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (Exception e){
+            System.out.println("Exception:" + e.getMessage());
+        }
+
     }
 
 }

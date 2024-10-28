@@ -22,4 +22,12 @@ public class MovieService {
         movieRepository.save(movie);
     }
 
+    public void deteleMovie(int id){
+        movieRepository.deleteById(id);
+    }
+
+    public Movie getMovieById(int id){
+        return movieRepository.findById(id).get();
+    }
+
 }
