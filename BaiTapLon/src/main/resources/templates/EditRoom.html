@@ -4,13 +4,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{./css/HomeAdmin.css}">
+    <link rel="stylesheet" th:href="@{/css/HomeAdmin.css}">
     <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css}" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link th:href='@{https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css}' rel='stylesheet'>
     <title>Quản Lý Rạp Phim</title>
 </head>
 
 <body>
+
+    <style>
+        .form-container {
+            width: 100%;
+            max-width: 1150px;
+            transition: all 0.4s ease;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group input[type="number"],
+        .form-group input[type="file"],
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group input[type="file"] {
+            padding: 5px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-actions button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .submit-btn {
+            background-color: skyblue;
+            color: #fff;
+        }
+        .submit-btn:hover {
+            background-color:rgb(43, 154, 199);
+        }
+
+        .reset-btn {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .reset-btn:hover {
+            background-color: #ba4e59;
+        }
+    </style>
+
     <div class="tt"></div>
     <div class="sidebar">
         <div class="logo_content">
@@ -65,7 +141,7 @@
         <div class="profile_content">
             <div class="profile">
                 <div class="profile_details">
-                    <img th:src="@{./image/auth_img/bgr_admin1.avif}">
+                    <img th:src="@{/image/auth_img/bgr_admin1.avif}">
                     <div class="name_job">
                         <div class="name">Hello Admin</div>
                         <div class="job">Admin</div>
@@ -78,38 +154,27 @@
         </div>
     </div>
    
-    <div class="content">
-        <h1>Danh sách suất chiếu</h1>
-        <p>Danh sách suất chiếu phim trên hệ thống bao gồm thời gian của các suất chiếu</p>
-        <button style="margin-left: 925px;">Thêm suất chiếu mới</button>
-        <hr>
-        <div class="container my-5">
-            <table class="table table-striped table-hover align-middle" style="text-align: center;">
-                <thead>
-                    <tr>
-                        <th scope="col">Mã Suất Chiếu</th>
-                        <th scope="col">Ngày</th>
-                        <th scope="col">Giờ</th>
-                        <th scope="col">Mã Phim</th>
-                        <th scope="col">Mã Phòng</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="s :${Screening}">
-                        <td th:text="${s.sreeningId}"></td>
-                        <td th:text="${m.dates}"></td>
-                        <td th:text="${m.hour}"></td>
-                        <td th:text="${m.movie}"></td>
-                        <td th:text="${m.screeningRoom}"></td>
-                        <td>
-                          <a style="color: hsl(240, 100%, 60%)" th:href="@{/editList/{id}(id=${s.sreeningId})}" title="Edit ScreeningMovie"><i class='bx bxs-edit ms-4'></i></a>
-                          <a style="color: hsl(0, 100%, 60%)" th:href="@{/deleteList/{id}(id=${s.sreeningId})}" title="Delete ScreeningMovie"><i class='bx bx-trash ms-4'></i></a>
-                        </td>
-                      </tr>
-                </tbody>
-            </table>
-        </div>
+
+    <div class="form-container">
+        <h2>Thay Đổi Thông Tin Phòng Chiếu</h2>
+        <form id="addMovieForm" enctype="multipart/form-data" th:action="@{/saveRoom}" method="post" th:object="${room}">
+            <input type="hidden" name="roomId" th:value="${room.roomId}"/>
+            <div class="form-group">
+                <label for="roomName">Tên Phòng:</label>
+                <input type="text" name="roomName" required th:value="${room.roomName}">
+            </div>
+            <div class="form-group">
+                <label for="quantityChair">Tổng Số Ghế:</label>
+                <input type="text" name="quantityChair" required th:value="${room.quantityChair}">
+            </div>
+            <div class="form-group">
+                <label for="detailRoom">Mô tả:</label>
+                <input type="text" name="detailRoom" required th:value="${room.detailRoom}">
+            </div>
+            <div class="form-actions">
+                <button style="margin-left: 40%;" type="submit" class="submit-btn">Xác nhận thêm mới</button>
+            </div>
+        </form>
     </div>
 
 
@@ -119,20 +184,27 @@
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
     let searchBtn = document.querySelector(".bx-search");
-    let container = document.querySelector(".container")
-    let content = document.querySelector(".content")
+    let container = document.querySelector(".form-container")
 
     btn.onclick = function () {
         sidebar.classList.toggle("active");
-        container.classList.toggle("large")
-        content.classList.toggle("large1")
+        container.classList.toggle("large1")
     }
 
     searchBtn.onclick = function () {
         sidebar.classList.toggle("active");
-        container.classList.toggle("large")
-        content.classList.toggle("large1")
+        container.classList.toggle("large1")
     }
+
+    // function submitForm() {
+    //     const form = document.getElementById('addMovieForm');
+    //     if (form.checkValidity()) {
+    //         alert('Thông tin phim đã được thêm thành công!');
+    //         form.reset();
+    //     } else {
+    //         alert('Vui lòng điền đầy đủ thông tin.');
+    //     }
+    // }
 
 </script>
 </html>

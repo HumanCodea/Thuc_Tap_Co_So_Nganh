@@ -24,8 +24,12 @@ public class ScreeningMovie {
     private int sreeningId;
 
     @Column(nullable = false)
-    @NotBlank(message = "This time screening field can not be blank")
-    private String timeScreening;
+    @NotBlank(message = "This dates field can not be blank")
+    private String dates;
+
+    @Column(nullable = false)
+    @NotBlank(message = "This hour field can not be blank")
+    private String hour;
 
     @ManyToOne
     private Movie movie;
