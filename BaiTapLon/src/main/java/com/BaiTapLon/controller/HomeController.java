@@ -1,6 +1,7 @@
 package com.BaiTapLon.controller;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.BaiTapLon.auth.service.CustormerService;
+import com.BaiTapLon.model.Promotion;
+import com.BaiTapLon.service.PromotionService;
 
 @Controller
 @RequestMapping(path = "")
@@ -20,9 +23,17 @@ public class HomeController {
 
     @Autowired
     private CustormerService custormerService;
+
+    @Autowired
+    private PromotionService promotionService;
     
     @GetMapping("/home")
-    public String Home(){
+    public String Home(Model model){
+
+        List<Promotion> promotions = promotionService.getAllPromotion();
+
+        model.addAttribute("Promotion", promotions);
+
         return "Home";
     }
 

@@ -187,18 +187,19 @@
 
     <section class="movies-section"> 
         <h2>Khuyến Mãi</h2>
-        <div class="movies-container">
-            <a class="click-watch" href="#">
+        <div class="movies-container" th:each="p :${Promotion}">
+            
+            <a class="click-watch" th:href="@{/promotion_detail/{id}(id=${p.promotionId})}">
                 <div class="movie-item">
-                    <img th:src="@{./image/uu_dai.png}" width="240px" height="200px" alt="ưu đãi thành viên">
-                    <h3>Ưu đãi  thành viên của rạp</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
+                    <img th:src="@{'/image/' + ${p.promotionImage}}" width="240px" height="200px">
+                    <h3 th:text="${p.namePromotion}"></h3>
+                    <a th:href="@{/promotion_detail/{id}(id=${p.promotionId})}" class="ticket-button">Xem Chi Tiết</a>
                 </div>
             </a>
 
-            <a class="click-watch" href="#">
+            <!-- <a class="click-watch" href="#">
                 <div class="movie-item">
-                    <img th:src="@{./image/uu_dai2.png}" width="240px" height="200px" alt="ưu đãi u22">
+                    <img th:src="@{./image/km2.png}" width="240px" height="200px" alt="ưu đãi u22">
                     <h3>Ưu đãi thành viên U22</h3>
                     <a href="#" class="ticket-button">Xem Chi Tiết</a>
                 </div>
@@ -206,7 +207,7 @@
 
             <a class="click-watch" href="#">
                 <div class="movie-item">
-                    <img th:src="@{./image/uu_dai3.png}" width="240px" height="200px" alt="lovely tuesday">
+                    <img th:src="@{./image/km3.png}" width="240px" height="200px" alt="lovely tuesday">
                     <h3>Lovely tuesday</h3>
                     <a href="#" class="ticket-button">Xem Chi Tiết</a>
                 </div>
@@ -214,11 +215,11 @@
 
             <a class="click-watch" href="#">
                 <div class="movie-item">
-                    <img th:src="@{./image/uu_dai4.png}" width="240px" height="200px" alt="big small day">
+                    <img th:src="@{./image/km4.png}" width="240px" height="200px" alt="big small day">
                     <h3>Thứ 2 cuối cùng của tháng</h3>
                     <a href="#" class="ticket-button">Xem Chi Tiết</a>
                 </div>
-            </a>
+            </a> -->
         </div>
     </section>
 
