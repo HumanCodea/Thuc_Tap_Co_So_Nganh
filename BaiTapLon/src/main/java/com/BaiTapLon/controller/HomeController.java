@@ -55,8 +55,8 @@ public class HomeController {
         return "HomeUser";
     }
 
-    @GetMapping("/movieDetail")
-    public String MoiveDetail(Model model){
+    @GetMapping("/movieDetailUser")
+    public String MoiveDetailUser(Model model){
 
         String email = getUsername();
 
@@ -64,6 +64,11 @@ public class HomeController {
 
         model.addAttribute("name", username);
         
+        return "MoiveDetailUser";
+    }
+
+    @GetMapping("/movieDetail")
+    public String MovieDetail(){
         return "MoiveDetail";
     }
 
