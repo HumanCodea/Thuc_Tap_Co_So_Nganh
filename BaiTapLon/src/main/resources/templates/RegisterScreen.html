@@ -156,19 +156,23 @@
    
 
     <div class="form-container">
-        <h2>Thêm Phòng Chiếu Mới</h2>
-        <form id="addMovieForm" enctype="multipart/form-data" th:object="${roomDTO}" method="post">
+        <h2>Thêm Suất Chiếu Mới</h2>
+        <form id="addMovieForm" enctype="multipart/form-data" th:object="${screenDTO}" method="post">
             <div class="form-group">
-                <label for="roomName">Tên Phòng:</label>
-                <input type="text" name="roomName" required th:field="${roomDTO.roomName}">
+                <label for="dates">Ngày:</label>
+                <input type="date" name="dates" required th:field="${screenDTO.dates}">
             </div>
             <div class="form-group">
-                <label for="quantityChair">Tổng Số Ghế:</label>
-                <input type="text" name="quantityChair" required th:field="${roomDTO.quantityChair}">
+                <label for="hour">Giờ:</label>
+                <input type="text" name="hour" required th:field="${screenDTO.hour}">
             </div>
             <div class="form-group">
-                <label for="detailRoom">Mô tả:</label>
-                <input type="text" name="detailRoom" required th:field="${roomDTO.detailRoom}">
+                <label for="movieId">Mã Phim:</label>
+                <input type="number" name="movieId" required th:field="${screenDTO.movieId}">
+            </div>
+            <div class="form-group">
+                <label for="roomId">Mã Phòng:</label>
+                <input type="number" name="roomId" required th:field="${screenDTO.roomId}">
             </div>
             <div class="form-actions">
                 <button type="submit" class="submit-btn">Xác nhận thêm mới</button>

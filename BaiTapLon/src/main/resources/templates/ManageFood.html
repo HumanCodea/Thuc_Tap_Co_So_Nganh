@@ -98,7 +98,7 @@
                     <tr th:each="f :${Food}">
                         <td th:text="${f.foodId}"></td>
                         <td th:text="${f.nameFood}"></td>
-                        <td th:text="${f.priceFood}"></td>
+                        <td th:text="@{${f.priceFood} + 'VNĐ'}"></td>
                         <td>
                           <img th:src="@{'/image/' + ${f.foodImage}}" alt="" width="100px">
                         </td>

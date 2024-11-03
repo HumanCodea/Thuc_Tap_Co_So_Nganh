@@ -52,6 +52,10 @@ public class HomeController {
             return "HomeAdmin";
         }
 
+        List<Promotion> promotions = promotionService.getAllPromotion();
+
+        model.addAttribute("Promotion", promotions);
+
         return "HomeUser";
     }
 

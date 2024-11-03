@@ -26,4 +26,8 @@ public class ScreenMovieService {
         screenMovieRepository.deleteById(id);
     }
 
+    public ScreeningMovie findScreeningMovieById(int id){
+        return screenMovieRepository.findById(id).get();
+    }
+
 }

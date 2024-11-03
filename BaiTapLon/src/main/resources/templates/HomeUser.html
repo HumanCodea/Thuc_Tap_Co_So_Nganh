@@ -187,9 +187,9 @@
 
     <section class="movies-section"> 
         <h2>Khuyến Mãi</h2>
-        <div class="movies-container" th:each="p :${Promotion}">
+        <div class="movies-container" >
             
-            <a class="click-watch" th:href="@{/promotion_detail/{id}(id=${p.promotionId})}">
+            <a th:each="p :${Promotion}" class="click-watch" th:href="@{/promotion_detail/{id}(id=${p.promotionId})}">
                 <div class="movie-item">
                     <img th:src="@{'/image/' + ${p.promotionImage}}" width="240px" height="200px">
                     <h3 th:text="${p.namePromotion}"></h3>
