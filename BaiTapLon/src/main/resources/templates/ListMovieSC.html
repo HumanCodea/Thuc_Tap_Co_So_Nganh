@@ -114,11 +114,13 @@
         </ul>
     </nav>
 
+    <h1>Danh Sách Phim Sắp Chiếu</h1>
+
     <div class="grid-container">
 
         <div class="movie-card" th:each="m :${Movie}">
             <a href="#">
-            <img th:src="@{'/image/' + ${m.posterMovie}}" alt="Phim 1">
+            <img th:src="@{'/image/' + ${m.posterMovie}}">
             <div class="movie-info">
                 <div class="movie-title" th:text="${m.nameMovie}"></div>
                 <div class="movie-director" th:text="${m.authorMovie}"></div>

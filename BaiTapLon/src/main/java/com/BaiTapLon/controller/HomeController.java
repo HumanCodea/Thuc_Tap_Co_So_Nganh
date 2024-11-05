@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.BaiTapLon.auth.service.CustormerService;
@@ -37,8 +38,35 @@ public class HomeController {
     public String Home(Model model){
 
         List<Promotion> promotions = promotionService.getAllPromotion();
+        List<Movie> movies = movieService.getAllMovie();
+        List<Movie> movieDC = new ArrayList<>();
+        List<Movie> movieSC = new ArrayList<>();
+        int a = 0,b=0;
 
         model.addAttribute("Promotion", promotions);
+
+        for(Movie m : movies){
+            if(m.getStatus().equals("DC")){
+                movieDC.add(m);
+                a++;
+            }
+            if(a == 4){
+                break;
+            }
+        }
+
+        for(Movie m : movies){
+            if(m.getStatus().equals("SC")){
+                movieSC.add(m);
+                b++;
+            }
+            if(b == 4){
+                break;
+            }
+        }
+
+        model.addAttribute("MovieSC", movieSC);
+        model.addAttribute("MovieDC", movieDC);
 
         return "Home";
     }
@@ -123,8 +151,13 @@ public class HomeController {
         return "ListPromotion";
     }
 
-    @GetMapping("/movieDetail")
-    public String MovieDetail(){
+    @GetMapping("/movieDetail/{id}")
+    public String MovieDetail(@ModelAttribute("id") int id, Model model){
+
+        Movie movie = movieService.getMovieById(id);
+
+        model.addAttribute("Movie", movie);
+
         return "MoiveDetail";
     }
 

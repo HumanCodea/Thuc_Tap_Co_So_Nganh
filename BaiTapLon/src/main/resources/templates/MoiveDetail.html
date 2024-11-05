@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{./css/HomeUser.css}">
+    <link rel="stylesheet" th:href="@{/css/HomeUser.css}">
     <link th:href="@{https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css}" rel='stylesheet'>
     <title>Trang Chủ</title>
 </head>
@@ -150,7 +150,7 @@
     <nav class="top-nav">
         <div class="nav-container">
             <div class="logo">
-                <img th:src="@{./image/logo.png}" alt="Logo">
+                <img th:src="@{/image/logo.png}" alt="Logo">
             </div>
             <div class="search-bar">
                 <input type="text" placeholder="Tìm kiếm phim...">
@@ -167,7 +167,7 @@
             <li><a th:href="@{/home}">Trang Chủ</a></li>
             <li><a th:href="@{/phimDangChieu}">Phim đang chiếu</a></li>
             <li><a th:href="@{/phimSapChieu}">Phim Sắp Chiếu</a></li>
-            <li><a href="#">Ưu Đãi</a></li>
+            <li><a th:href="@{/khuyenMai}">Ưu Đãi</a></li>
         </ul>
     </nav>
 
@@ -175,41 +175,37 @@
 
     <div class="modal_trailer hide">
         <button class="modal_inner">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/CpcQcKIDYFs?si=6NTu-B8_q4unArRY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/CpcQcKIDYFs?si=6NTu-B8_q4unArRY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
         </div>
     </div>
 
         <div class="movie-details">
             <p class="movie-text">Chi tiết phim</p>
-            <div class="movie-details-content">
+            <div class="movie-details-content" th:object="${Movie}">
                 <div class="movie-booking-img">
-                    <img th:src="@{./image/anh6.png}" alt="" class="movie-img">
+                    <img th:src="@{'/image/' + ${Movie.posterMovie}}" alt="" class="movie-img">
                     <a th:href="@{/buyTicket}" class="movie-booking">
                         Buy Ticket
                     </a>
                 </div>
                 <div class="movie-conten">
-                    <div class="movie-name">
-                        MỘ ĐOM ĐÓM
-                    </div>
+                    <div class="movie-name" th:text="${Movie.nameMovie}"></div>
                     <div class="movie-director movie-info">
-                        Đạo diễn: <span>Takahata Isao</span>
+                        Đạo diễn: <span th:text="${Movie.authorMovie}"></span>
                     </div>
                     <div class="movie-actor movie-info">
-                        Diễn viên: <span>Tatsumi Tsutomu, Shiraishi Ayano, Shinohara Yoshiko</span>
+                        Diễn viên: <span th:text="${Movie.movieCast}"></span>
                     </div>
                     <div class="movie-genre movie-info">
-                        Thể loại: <span>Hoạt hình</span>
+                        Thể loại: <span th:text="${Movie.typeMovie}"></span>
                     </div>
                     <div class="movie-time movie-info">
-                        Thời gian: <span>89 phút</span>
+                        Thời gian: <span th:text="${Movie.timeMovie}"></span>
                     </div>
                     <div class="movie-release movie-info">
-                        Khởi chiếu: <span>04/10/2024</span>
+                        Khởi chiếu: <span th:text="${Movie.releaseMovie}"></span>
                     </div>
-                    <p class="movie-descript movie-info">
-                        Hai anh em Seita và Setsuko mất mẹ sau cuộc thả bom dữ dội của không quân Mỹ. Cả hai phải vật lộn để tồn tại ở Nhật Bản hậu Thế chiến II. Nhưng xã hội khắc nghiệt và chúng vật lộn tìm kiếm thức ăn cũng như thoát khỏi những khó khăn giữa chiến tranh.
-                    </p>
+                    <p class="movie-descript movie-info" th:text="${Movie.movieDetail}"></p>
                     <div class="movie-trailer">
                         Xem Trailer
                     </div>
