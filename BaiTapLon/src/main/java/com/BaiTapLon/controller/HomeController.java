@@ -1,5 +1,6 @@
 package com.BaiTapLon.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.BaiTapLon.auth.service.CustormerService;
+import com.BaiTapLon.model.Movie;
 import com.BaiTapLon.model.Promotion;
+import com.BaiTapLon.service.MovieService;
 import com.BaiTapLon.service.PromotionService;
 
 @Controller
@@ -26,6 +29,9 @@ public class HomeController {
 
     @Autowired
     private PromotionService promotionService;
+
+    @Autowired
+    private MovieService movieService;
     
     @GetMapping("/home")
     public String Home(Model model){
@@ -69,6 +75,52 @@ public class HomeController {
         model.addAttribute("name", username);
         
         return "MoiveDetailUser";
+    }
+
+    @GetMapping("/phimDangChieu")
+    public String ListMovieDC(Model model){
+
+        List<Movie> movies = movieService.getAllMovie();
+
+        List<Movie> newMovie = new ArrayList<>();
+
+        for(Movie m : movies){
+            if(m.getStatus().equals("DC")){
+                newMovie.add(m);
+            }
+        }
+
+        model.addAttribute("Movie", newMovie);
+
+        return "ListMovieDC";
+    }
+
+    @GetMapping("/phimSapChieu")
+    public String ListMovieSC(Model model){
+
+        List<Movie> movies = movieService.getAllMovie();
+
+        List<Movie> newMovie = new ArrayList<>();
+
+        for(Movie m : movies){
+            if(m.getStatus().equals("SC")){
+                newMovie.add(m);
+            }
+        }
+
+        model.addAttribute("Movie", newMovie);
+
+        return "ListMovieSC";
+    }
+
+    @GetMapping("/khuyenMai")
+    public String ListPromotion(Model model){
+
+        List<Promotion> promotions = promotionService.getAllPromotion();
+
+        model.addAttribute("Promotion", promotions);
+
+        return "ListPromotion";
     }
 
     @GetMapping("/movieDetail")

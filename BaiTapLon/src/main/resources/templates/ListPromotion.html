@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <html lang="en" xmlns:th="https://www.thymeleaf.com"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{./css/HomeUser.css}">
+    <link th:href="@{https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css}" rel='stylesheet'>
+    <title>Trang Chủ</title>
+</head>
+<body>
+
+    <style>
+        .footer-container{
+            display: flex;
+            justify-content: space-between;
+            background-color: #222;
+            background-image: url(./image/footer.png) ;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #fe025c;
+            padding: 40px 20px;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            padding-top: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 20px;
+            width: 1300px;
+            margin-left: 110px;
+        }
+
+        .movie-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .movie-card img {
+            width: 90%;
+            height: 360px;
+            border-radius: 8px;
+            transition: transform 0.5s;
+            margin-top: 15px;
+        }
+        .movie-card img:hover {
+            transform: scale(1.12)
+
+        }
+        .movie-card a{
+            color: black;
+            text-decoration: none;
+        }
+        .movie-card a:hover {
+            color: red;
+        }
+        .movie-info {
+            padding: 15px;
+        }
+
+        .movie-title {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .ticket-button{
+            padding: 10px;
+            background-color: blue;
+            margin-top: 10px;
+            width: 210px;
+            border-radius: 18px;
+            font-size: 18px;
+            outline: none;
+            border: none;
+        }
+
+        .movie-director,
+        .movie-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <img th:src="@{./image/logo.png}" alt="Logo">
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm kiếm phim...">
+                <button class="search-button">Tìm kiếm</button>
+            </div>
+            <div class="auth-buttons">
+                <button class="login-button"><a th:href="@{/login}">Đăng nhập</a></button>
+                <button class="register-button"><a th:href="@{/register}">Đăng ký</a></button>
+            </div>
+        </div>
+    </nav>
+    <nav class="bottom-nav">
+        <ul>
+            <li><a th:href="@{/home}">Trang Chủ</a></li>
+            <li><a th:href="@{/phimDangChieu}">Phim đang chiếu</a></li>
+            <li><a th:href="@{/phimSapChieu}">Phim Sắp Chiếu</a></li>
+            <li><a th:href="@{/khuyenMai}">Khuyến mãi</a></li>
+        </ul>
+    </nav>
+
+    <div class="grid-container">
+
+        <div class="movie-card" th:each="p :${Promotion}">
+            <a href="#">
+            <img th:src="@{'/image/' + ${p.promotionImage}}">
+            <div class="movie-info">
+                <div class="movie-title" th:text="${p.namePromotion}"></div>
+                <div class="movie-director" th:text="${p.expirated}"></div>
+            </div>
+            </a>
+        </div>
+
+    </div>
+    
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Về chúng tôi</h3>
+                <ul>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="#">Các câu hỏi thường gặp</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Điều khoản sử dụng</h3>
+                <ul>
+                    <li><a href="#">Điều khoản chung</a></li>
+                    <li><a href="#">Chính sách thanh toán</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Kết nối với chúng tôi</h3>
+                <div class="social-icons">
+                    <a class="list-icon" href="#"><i class='bx bxl-facebook-circle' style='color:#ffffff' ></i></a>
+                    <a class="list-icon" href="#"><i class='bx bxl-instagram' style='color:#ffffff' ></i></a>
+                    <a class="list-icon" href="#"><i class='bx bxl-youtube' style='color:#ffffff' ></i></a>
+                    <a class="list-icon" href="#"><i class='bx bxl-twitter' style='color:#ffffff' ></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Chăm sóc khách hàng</h3>
+                <ul>
+                    <li>Hotline 1: <a href="tel:0123456789">0123 456 789</a></li>
+                    <li>Hotline 2: <a href="tel:0987654321">0987 654 321</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="designer">
+            <p>© Copyright 2024 Rapchieuphim_nhom2</p>
+        </div>
+    </footer>
+    
+</body>
+</html>
