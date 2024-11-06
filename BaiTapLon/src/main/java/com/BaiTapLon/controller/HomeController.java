@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -215,6 +216,24 @@ public class HomeController {
         model.addAttribute("Movie", movie);
 
         return "MoiveDetail";
+    }
+
+    @GetMapping("/search_movie")
+    public String SearchMovie(@Param("nameMovie") String nameMovie, Model model){
+
+        List<Movie> movies = movieService.findByMovieName(nameMovie);
+
+        String email = getUsername();
+
+        String username = custormerService.findByUsername(email);
+
+        model.addAttribute("name", username);
+
+        model.addAttribute("nameMovie", nameMovie);
+
+        model.addAttribute("Movie", movies);
+
+        return "SearchMovie";
     }
 
     public String getUsername(){

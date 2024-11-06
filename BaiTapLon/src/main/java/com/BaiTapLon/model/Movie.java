@@ -61,6 +61,10 @@ public class Movie {
     @NotBlank(message = "Please provide movie's status")
     private String status;
 
+    @Column(nullable = false)
+    @NotBlank(message = "Please provide movie's link trainer")
+    private String linkTrailer;
+
     @OneToMany(mappedBy = "movie")
     private List<Ticket> ticket;
 

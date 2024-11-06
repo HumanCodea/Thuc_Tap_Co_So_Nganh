@@ -160,8 +160,10 @@
                 </a>
             </div>
             <div class="search-bar">
-                <input type="text" placeholder="Tìm kiếm phim...">
-                <button class="search-button">Tìm kiếm</button>
+                <form th:action="search_movie">
+                    <input name="nameMovie" type="text" placeholder="Tìm kiếm phim..." th:value="${nameMovie}" autocomplete="off">
+                    <button class="search-button">Tìm kiếm</button>
+                </form>
             </div>
             <div class="auth-buttons" th:if="${name == null}">
                 <button class="login-button"><a th:href="@{/login}">Đăng nhập</a></button>

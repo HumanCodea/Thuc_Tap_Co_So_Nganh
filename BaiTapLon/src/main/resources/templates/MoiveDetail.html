@@ -45,10 +45,6 @@
             list-style: none;
         }
 
-        .hide{
-            display: none;
-        }
-
         .movie-details {
             width: 920px;
             background-color: #fff;
@@ -191,15 +187,17 @@
                 </a>
             </div>
             <div class="search-bar">
-                <input type="text" placeholder="Tìm kiếm phim...">
-                <button class="search-button">Tìm kiếm</button>
+                <form th:action="search_movie">
+                    <input name="nameMovie" type="text" placeholder="Tìm kiếm phim..." th:value="${nameMovie}" autocomplete="off">
+                    <button class="search-button">Tìm kiếm</button>
+                </form>
             </div>
             <div class="auth-buttons" th:if="${name == null}">
                 <button class="login-button"><a th:href="@{/login}">Đăng nhập</a></button>
                 <button class="register-button"><a th:href="@{/register}">Đăng ký</a></button>
             </div>
-            <div class="navbar_nav_right" th:if="${name != null}">
-                <li class="nav-item">
+            <div class="navbar_nav_right" th:if="${name != null}" >
+                <li class="nav-item" onclick="show()">
                     <a class="nav-link" th:href="@{#}">
                         <span th:text="${name}"></span>
                     </a>
@@ -228,8 +226,8 @@
 <div class="body">
 
     <div class="modal_trailer hide">
-        <button class="modal_inner">
-            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/CpcQcKIDYFs?si=6NTu-B8_q4unArRY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+        <button class="modal_inner" th:object="${Movie}">
+            <iframe width="560" height="315" th:src="${Movie.linkTrailer}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -240,6 +238,9 @@
                     <img th:src="@{'/image/' + ${Movie.posterMovie}}" alt="" class="movie-img">
                     <a th:href="@{/buyTicket}" th:if="${Movie.status == 'DC' }" class="movie-booking">
                         Buy Ticket
+                    </a>
+                    <a th:href="@{#}" th:if="${Movie.status == 'SC' }" class="movie-booking">
+                        Sắp Chiếu
                     </a>
                 </div>
                 <div class="movie-conten">
@@ -314,12 +315,10 @@
 <script>
     let modalTrailer = document.querySelector('.modal_trailer')
     let movieTrailer = document.querySelector('.movie-trailer')
+
     let navItem = document.querySelector(".nav-item")
     let dropdownMenyu = document.querySelector('.dropdown-menu')
 
-    navItem.addEventListener('click', function(){
-        dropdownMenyu.classList.toggle('hide')
-    })
 
     movieTrailer.addEventListener('click', function(){
         modalTrailer.classList.remove('hide')
@@ -330,6 +329,12 @@
             modalTrailer.classList.toggle('hide')
         }
     })
+
+    function show(){
+        navItem.addEventListener('click', function(){
+            dropdownMenyu.classList.toggle('hide')
+    })
+    }
 
 </script>
 </html>

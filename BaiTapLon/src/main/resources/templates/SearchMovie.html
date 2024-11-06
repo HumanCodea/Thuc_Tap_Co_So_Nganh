@@ -15,7 +15,7 @@
             display: flex;
             justify-content: space-between;
             background-color: #222;
-            background-image: url(./image/footer.png) ;
+            background-image: url(/image/footer.png) ;
             background-size: cover;
             background-repeat: no-repeat;
             color: #fe025c;
@@ -134,17 +134,17 @@
                 </a>
             </div>
             <div class="search-bar">
-                <form th:action="search_movie">
+                <form>
                     <input name="nameMovie" type="text" placeholder="Tìm kiếm phim..." th:value="${nameMovie}" autocomplete="off">
                     <button class="search-button">Tìm kiếm</button>
                 </form>
             </div>
-            <div class="auth-buttons" th:if="${name == null}">
+            <div class="auth-buttons" th:if="${name == null }">
                 <button class="login-button"><a th:href="@{/login}">Đăng nhập</a></button>
                 <button class="register-button"><a th:href="@{/register}">Đăng ký</a></button>
             </div>
             <div class="navbar_nav_right" th:if="${name != null}">
-                <li class="nav-item">
+                <li class="nav-item" onclick="show()">
                     <a class="nav-link" th:href="@{#}">
                         <span th:text="${name}"></span>
                     </a>
@@ -170,16 +170,17 @@
         </ul>
     </nav>
 
-    <h1>Danh Sách Khuyến Mãi</h1>
+    <h1>Danh Sách Phim Tìm Kiếm</h1>
 
     <div class="grid-container">
-
-        <div class="movie-card" th:each="p :${Promotion}">
-            <a th:href="@{/promotion_detail/{id}(id=${p.promotionId})}">
-            <img th:src="@{'/image/' + ${p.promotionImage}}">
+        
+        <div class="movie-card" th:each="m :${Movie}">
+            <a th:href="@{/movieDetail/{id}(id=${m.movieId})}">
+            <img th:src="@{'/image/' + ${m.posterMovie}}" alt="Phim 1">
             <div class="movie-info">
-                <div class="movie-title" th:text="${p.namePromotion}"></div>
-                <div class="movie-director" th:text="${p.expirated}"></div>
+                <div class="movie-title" th:text="${m.nameMovie}"></div>
+                <div class="movie-director" th:text="${m.authorMovie}"></div>
+                <button class="ticket-button"><a style="color: white;" href="#">Đặt Vé Ngay</a></button>
             </div>
             </a>
         </div>
@@ -234,8 +235,10 @@
     let navItem = document.querySelector(".nav-item")
     let dropdownMenyu = document.querySelector('.dropdown-menu')
 
-    navItem.addEventListener('click', function(){
-        dropdownMenyu.classList.toggle('hide')
-    })
+    function show(){
+        navItem.addEventListener('click', function(){
+            dropdownMenyu.classList.toggle('hide')
+        })
+    }
 </script>
 </html>
