@@ -29,6 +29,8 @@ public class MovieDTO {
 
     private String movieDetail;
 
+    private String linkTrailer;
+
     private String releaseMovie;
 
 }

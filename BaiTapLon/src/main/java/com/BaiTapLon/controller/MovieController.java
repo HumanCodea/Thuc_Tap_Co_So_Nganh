@@ -65,6 +65,7 @@ public class MovieController {
         movie.setMovieDetail(movieDTO.getMovieDetail());
         movie.setReleaseMovie(movieDTO.getReleaseMovie());
         movie.setStatus("DC");
+        movie.setLinkTrailer(movieDTO.getLinkTrailer());
         movie.setPosterMovie(file.getOriginalFilename());
 
         movieService.saveMovie(movie);

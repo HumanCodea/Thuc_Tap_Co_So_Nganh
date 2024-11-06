@@ -185,6 +185,10 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="linkTrainer">Link Trailer:</label>
+                <input type="text" name="linkTrainer" required th:field="${movieDTO.linkTrailer}">
+            </div>
+            <div class="form-group">
                 <label for="movieDetail">Mô tả phim:</label>
                 <textarea style="width: 1110px;border: 1px solid #ccc;border-radius: 4px;padding: 8px;" rows="4" cols="50" name="movieDetail" min="1"  th:field="${movieDTO.movieDetail}"></textarea>
             </div>
