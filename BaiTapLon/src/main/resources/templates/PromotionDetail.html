@@ -4,18 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{./css/HomeUser.css}">
+    <link rel="stylesheet" th:href="@{/css/HomeUser.css}">
     <link th:href="@{https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css}" rel='stylesheet'>
     <title>Trang Chủ</title>
 </head>
 <body>
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         .footer-container{
             display: flex;
             justify-content: space-between;
             background-color: #222;
-            background-image: url(./image/footer.png) ;
+            background-image: url(/image/footer.png) ;
             background-size: cover;
             background-repeat: no-repeat;
             color: #fe025c;
@@ -40,31 +45,8 @@
             list-style: none;
         }
 
-        .navbar_nav_right .dropdown-menu{
-            position: fixed;
-            width: 130px;
-            top: 53px;
-            right: 0;
-            background: black;
-            list-style: none;
-        }
-
-        .dropdown-menu li{
-            padding: 10px;
-        }
-
-        .dropdown-menu li a{
-            font-size: 14px;
-        }
-
         .hide{
             display: none;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
         }
 
         .movie-details {
@@ -132,49 +114,60 @@
         .movie-booking:hover {
             opacity: 0.7;
         }
-        .movie-trailer{
-            display: inline-block;
-            text-decoration: none;
-            padding: 12px 26px;
-            margin-top: 16px;
-            color: #fff;
-            background-color: blue;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .modal_trailer{
-            position: fixed;
-            background: rgb(0, 0, 0, 0.6);
-            height: 100vh;
-            width: 100vw;
-            top: 0;
-        }
-        .modal_inner{
-            width: 600px;
-            background: white;
-            margin-left: 29%;
-            margin-top: 10%;
-            position: relative;
-            overflow: hidden;
-            border-radius: 5px;
+        .navbar_nav_right{
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+        }
+
+        .navbar_nav_right a{
+            color: white;
+            text-decoration: none;
+            font-size: 20px; 
+        }
+
+        .navbar_nav_right li{
+            cursor: pointer;
+            list-style: none;
+        }
+        .navbar_nav_right .dropdown-menu{
+            position: fixed;
+            width: 130px;
+            top: 53px;
+            right: 0;
+            background: black;
+            list-style: none;
+        }
+
+        .dropdown-menu li{
+            padding: 10px;
+        }
+
+        .dropdown-menu li a{
+            font-size: 14px;
+        }
+
+        .hide{
+            display: none;
         }
     </style>
 
     <nav class="top-nav">
         <div class="nav-container">
             <div class="logo">
-                <img th:src="@{./image/logo.png}" alt="Logo">
+                <a th:href="@{/home}">
+                    <img th:src="@{/image/logo.png}" alt="Logo">
+                </a>
             </div>
             <div class="search-bar">
                 <input type="text" placeholder="Tìm kiếm phim...">
                 <button class="search-button">Tìm kiếm</button>
             </div>
-            <div class="navbar_nav_right">
+            <div class="auth-buttons" th:if="${name == null}">
+                <button class="login-button"><a th:href="@{/login}">Đăng nhập</a></button>
+                <button class="register-button"><a th:href="@{/register}">Đăng ký</a></button>
+            </div>
+            <div class="navbar_nav_right" th:if="${name != null}">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{#}">
                         <span th:text="${name}"></span>
@@ -193,54 +186,29 @@
     </nav>
     <nav class="bottom-nav">
         <ul>
-            <li><a th:href="@{/homeUser}">Trang Chủ</a></li>
+            <li th:if="${name == null}" ><a th:href="@{/home}">Trang Chủ</a></li>
+            <li th:if="${name != null}" ><a th:href="@{/homeUser}">Trang Chủ</a></li>
             <li><a th:href="@{/phimDangChieu}">Phim đang chiếu</a></li>
             <li><a th:href="@{/phimSapChieu}">Phim Sắp Chiếu</a></li>
-            <li><a href="#">Ưu Đãi</a></li>
+            <li><a th:href="@{/khuyenMai}">Khuyến mãi</a></li>
         </ul>
     </nav>
 
 <div class="body">
 
-    <div class="modal_trailer hide">
-        <button class="modal_inner">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/CpcQcKIDYFs?si=6NTu-B8_q4unArRY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-    </div>
-
         <div class="movie-details">
-            <p class="movie-text">Chi tiết phim</p>
-            <div class="movie-details-content">
+            <p class="movie-text">Chi Tiết Khuyến Mãi</p>
+            <div class="movie-details-content" th:object="${Promotion}">
                 <div class="movie-booking-img">
-                    <img th:src="@{./image/anh6.png}" alt="" class="movie-img">
-                    <a th:href="@{/buyTicket}" class="movie-booking">
-                        Buy Ticket
-                    </a>
+                    <img th:src="@{'/image/' + ${Promotion.promotionImage}}" alt="" class="movie-img">
                 </div>
                 <div class="movie-conten">
-                    <div class="movie-name">
-                        MỘ ĐOM ĐÓM
-                    </div>
-                    <div class="movie-director movie-info">
-                        Đạo diễn: <span>Takahata Isao</span>
+                    <div class="movie-name" th:text="${Promotion.namePromotion}"></div>
+                    <div class="movie-release movie-info">
+                        Áp dụng đến: <span th:text="${Promotion.expirated}"></span>
                     </div>
                     <div class="movie-actor movie-info">
-                        Diễn viên: <span>Tatsumi Tsutomu, Shiraishi Ayano, Shinohara Yoshiko</span>
-                    </div>
-                    <div class="movie-genre movie-info">
-                        Thể loại: <span>Hoạt hình</span>
-                    </div>
-                    <div class="movie-time movie-info">
-                        Thời gian: <span>89 phút</span>
-                    </div>
-                    <div class="movie-release movie-info">
-                        Khởi chiếu: <span>04/10/2024</span>
-                    </div>
-                    <p class="movie-descript movie-info">
-                        Hai anh em Seita và Setsuko mất mẹ sau cuộc thả bom dữ dội của không quân Mỹ. Cả hai phải vật lộn để tồn tại ở Nhật Bản hậu Thế chiến II. Nhưng xã hội khắc nghiệt và chúng vật lộn tìm kiếm thức ăn cũng như thoát khỏi những khó khăn giữa chiến tranh.
-                    </p>
-                    <div class="movie-trailer">
-                        Xem Trailer
+                        Mô tả: <span th:text="${Promotion.detailPromotion}"></span>
                     </div>
                 </div>
             </div>
@@ -291,23 +259,12 @@
     
 </body>
 <script>
+
     let navItem = document.querySelector(".nav-item")
     let dropdownMenyu = document.querySelector('.dropdown-menu')
-    let modalTrailer = document.querySelector('.modal_trailer')
-    let movieTrailer = document.querySelector('.movie-trailer')
 
     navItem.addEventListener('click', function(){
         dropdownMenyu.classList.toggle('hide')
-    })
-
-    movieTrailer.addEventListener('click', function(){
-        modalTrailer.classList.remove('hide')
-    })
-        
-    modalTrailer.addEventListener('click', function(e){
-        if(e.target == e.currentTarget){
-            modalTrailer.classList.toggle('hide')
-        }
     })
 
 </script>

@@ -20,7 +20,7 @@
             display: flex;
             justify-content: space-between;
             background-color: #222;
-            background-image: url(./image/footer.png) ;
+            background-image: url(/image/footer.png) ;
             background-size: cover;
             background-repeat: no-repeat;
             color: #fe025c;
@@ -145,29 +145,83 @@
             justify-content: center;
             padding: 20px;
         }
+        .navbar_nav_right{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar_nav_right a{
+            color: white;
+            text-decoration: none;
+            font-size: 20px; 
+        }
+
+        .navbar_nav_right li{
+            cursor: pointer;
+            list-style: none;
+        }
+        .navbar_nav_right .dropdown-menu{
+            position: fixed;
+            width: 130px;
+            top: 53px;
+            right: 0;
+            background: black;
+            list-style: none;
+        }
+
+        .dropdown-menu li{
+            padding: 10px;
+        }
+
+        .dropdown-menu li a{
+            font-size: 14px;
+        }
+
+        .hide{
+            display: none;
+        }
     </style>
 
     <nav class="top-nav">
         <div class="nav-container">
             <div class="logo">
-                <img th:src="@{/image/logo.png}" alt="Logo">
+                <a th:href="@{/home}">
+                    <img th:src="@{/image/logo.png}" alt="Logo">
+                </a>
             </div>
             <div class="search-bar">
                 <input type="text" placeholder="Tìm kiếm phim...">
                 <button class="search-button">Tìm kiếm</button>
             </div>
-            <div class="auth-buttons">
+            <div class="auth-buttons" th:if="${name == null}">
                 <button class="login-button"><a th:href="@{/login}">Đăng nhập</a></button>
                 <button class="register-button"><a th:href="@{/register}">Đăng ký</a></button>
+            </div>
+            <div class="navbar_nav_right" th:if="${name != null}">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{#}">
+                        <span th:text="${name}"></span>
+                    </a>
+                    <i class='bx bx-chevron-down' style="color: white;font-size: 16px;"></i>
+                </li>
+                <ul class="dropdown-menu hide">
+                    <li><a class="dropdown-item" target="_blank" >Trang cá nhân</a></li>
+                    <li><a class="dropdown-item" target="_blank" th:href="@{/add_money}" >Nạp tiền</a></li> <!-- target="_blank" mo qua 1 trang moi -->
+                    <li>
+                        <a ces:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/logout}">Sign out</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
     <nav class="bottom-nav">
         <ul>
-            <li><a th:href="@{/home}">Trang Chủ</a></li>
+            <li th:if="${name == null}" ><a th:href="@{/home}">Trang Chủ</a></li>
+            <li th:if="${name != null}" ><a th:href="@{/homeUser}">Trang Chủ</a></li>
             <li><a th:href="@{/phimDangChieu}">Phim đang chiếu</a></li>
             <li><a th:href="@{/phimSapChieu}">Phim Sắp Chiếu</a></li>
-            <li><a th:href="@{/khuyenMai}">Ưu Đãi</a></li>
+            <li><a th:href="@{/khuyenMai}">Khuyến mãi</a></li>
         </ul>
     </nav>
 
@@ -184,7 +238,7 @@
             <div class="movie-details-content" th:object="${Movie}">
                 <div class="movie-booking-img">
                     <img th:src="@{'/image/' + ${Movie.posterMovie}}" alt="" class="movie-img">
-                    <a th:href="@{/buyTicket}" class="movie-booking">
+                    <a th:href="@{/buyTicket}" th:if="${Movie.status == 'DC' }" class="movie-booking">
                         Buy Ticket
                     </a>
                 </div>
@@ -260,6 +314,12 @@
 <script>
     let modalTrailer = document.querySelector('.modal_trailer')
     let movieTrailer = document.querySelector('.movie-trailer')
+    let navItem = document.querySelector(".nav-item")
+    let dropdownMenyu = document.querySelector('.dropdown-menu')
+
+    navItem.addEventListener('click', function(){
+        dropdownMenyu.classList.toggle('hide')
+    })
 
     movieTrailer.addEventListener('click', function(){
         modalTrailer.classList.remove('hide')

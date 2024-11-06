@@ -65,7 +65,9 @@
     <nav class="top-nav">
         <div class="nav-container">
             <div class="logo">
-                <img th:src="@{./image/logo.png}" alt="Logo">
+                <a th:href="@{/home}">
+                    <img th:src="@{./image/logo.png}" alt="Logo">
+                </a>
             </div>
             <div class="search-bar">
                 <input type="text" placeholder="Tìm kiếm phim...">
@@ -93,7 +95,7 @@
             <li><a th:href="@{/homeUser}">Trang Chủ</a></li>
             <li><a th:href="@{/phimDangChieu}">Phim đang chiếu</a></li>
             <li><a th:href="@{/phimSapChieu}">Phim Sắp Chiếu</a></li>
-            <li><a href="#">Khuyến mãi</a></li>
+            <li><a th:href="@{/khuyenMai}">Khuyến mãi</a></li>
         </ul>
     </nav>
 
@@ -113,37 +115,15 @@
     <section class="movies-section">
         <h2>Phim Đang Chiếu</h2>
         <div class="movies-container">
-            <a class="click-watch" href="#">
+
+            <a th:each="m :${MovieDC}" class="click-watch" th:href="@{/movieDetail/{id}(id=${m.movieId})}">
                 <div class="movie-item">
-                    <img th:src="@{./image/anh2.png}" alt="Phim Đang Chiếu 1">
-                    <h3>Cậu Bé Cá Heo</h3>
-                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
+                    <img th:src="@{'/image/' + ${m.posterMovie}}">
+                    <h3 th:text="${m.nameMovie}"></h3>
+                    <a th:href="@{#}" class="ticket-button">Đặt Vé Ngay</a>
                 </div>
             </a>
 
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh4.png}" alt="Phim Sắp Chiếu 1">
-                    <h3>Joker</h3>
-                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh5.png}" alt="Phim Đang Chiếu 3">
-                    <h3>Ku Ma Thong 2024</h3>
-                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh7.png}" alt="Phim Đang Chiếu 4">
-                    <h3>Phép Màu Giữa Đêm Đông</h3>
-                    <a href="#" class="ticket-button">Đặt Vé Ngay</a>
-                </div>
-            </a>
         </div>
     </section>
 
@@ -151,37 +131,14 @@
         <h2>Phim Sắp Chiếu</h2>
         <div class="movies-container">
             
-            <a class="click-watch" th:href="@{/movieDetailUser}">
+            <a th:each="m :${MovieSC}" class="click-watch" th:href="@{/movieDetail/{id}(id=${m.movieId})}">
                 <div class="movie-item">
-                    <img th:src="@{./image/anh6.png}" alt="Phim Đang Chiếu 2">
-                    <h3>Mộ Đom Đóm</h3>
-                    <a th:href="@{/movieDetailUser}" class="ticket-button">Xem Chi Tiết</a>
+                    <img th:src="@{'/image/' + ${m.posterMovie}}">
+                    <h3 th:text="${m.nameMovie}"></h3>
+                    <a th:href="@{/movieDetail/{id}(id=${m.movieId})}" class="ticket-button">Xem Chi Tiết</a>
                 </div>
             </a>
 
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh12.png}" alt="Phim Sắp Chiếu 2">
-                    <h3>Robot Hoang Dã</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh3.png}" alt="Phim Sắp Chiếu 3">
-                    <h3>Đố Còng Được Tôi</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
-
-            <a class="click-watch" href="#">
-                <div class="movie-item">
-                    <img th:src="@{./image/anh1.png}" alt="Phim Sắp Chiếu 4">
-                    <h3>Cám</h3>
-                    <a href="#" class="ticket-button">Xem Chi Tiết</a>
-                </div>
-            </a>
         </div>
     </section>
 

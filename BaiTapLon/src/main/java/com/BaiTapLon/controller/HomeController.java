@@ -86,23 +86,39 @@ public class HomeController {
             return "HomeAdmin";
         }
 
+        List<Movie> movies = movieService.getAllMovie();
+        List<Movie> movieDC = new ArrayList<>();
+        List<Movie> movieSC = new ArrayList<>();
+        int a = 0,b=0;
+
+        for(Movie m : movies){
+            if(m.getStatus().equals("DC")){
+                movieDC.add(m);
+                a++;
+            }
+            if(a == 4){
+                break;
+            }
+        }
+
+        for(Movie m : movies){
+            if(m.getStatus().equals("SC")){
+                movieSC.add(m);
+                b++;
+            }
+            if(b == 4){
+                break;
+            }
+        }
+
+        model.addAttribute("MovieSC", movieSC);
+        model.addAttribute("MovieDC", movieDC);
+
         List<Promotion> promotions = promotionService.getAllPromotion();
 
         model.addAttribute("Promotion", promotions);
 
         return "HomeUser";
-    }
-
-    @GetMapping("/movieDetailUser")
-    public String MoiveDetailUser(Model model){
-
-        String email = getUsername();
-
-        String username = custormerService.findByUsername(email);
-
-        model.addAttribute("name", username);
-        
-        return "MoiveDetailUser";
     }
 
     @GetMapping("/phimDangChieu")
@@ -112,11 +128,17 @@ public class HomeController {
 
         List<Movie> newMovie = new ArrayList<>();
 
+        String email = getUsername();
+
+        String username = custormerService.findByUsername(email);
+
         for(Movie m : movies){
             if(m.getStatus().equals("DC")){
                 newMovie.add(m);
             }
         }
+
+        model.addAttribute("name", username);
 
         model.addAttribute("Movie", newMovie);
 
@@ -129,6 +151,12 @@ public class HomeController {
         List<Movie> movies = movieService.getAllMovie();
 
         List<Movie> newMovie = new ArrayList<>();
+
+        String email = getUsername();
+
+        String username = custormerService.findByUsername(email);
+
+        model.addAttribute("name", username);
 
         for(Movie m : movies){
             if(m.getStatus().equals("SC")){
@@ -146,15 +174,43 @@ public class HomeController {
 
         List<Promotion> promotions = promotionService.getAllPromotion();
 
+        String email = getUsername();
+
+        String username = custormerService.findByUsername(email);
+
+        model.addAttribute("name", username);
+
         model.addAttribute("Promotion", promotions);
 
         return "ListPromotion";
+    }
+
+    @GetMapping("/promotion_detail/{id}")
+    public String PromotionDetail(@ModelAttribute("id") int id, Model model){
+        
+        Promotion promotion = promotionService.findPromotionById(id);
+
+        String email = getUsername();
+
+        String username = custormerService.findByUsername(email);
+
+        model.addAttribute("name", username);
+
+        model.addAttribute("Promotion", promotion);
+
+        return "PromotionDetail";
     }
 
     @GetMapping("/movieDetail/{id}")
     public String MovieDetail(@ModelAttribute("id") int id, Model model){
 
         Movie movie = movieService.getMovieById(id);
+
+        String email = getUsername();
+
+        String username = custormerService.findByUsername(email);
+
+        model.addAttribute("name", username);
 
         model.addAttribute("Movie", movie);
 
