@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.BaiTapLon.auth.service.CustormerService;
+import com.BaiTapLon.model.Food;
 import com.BaiTapLon.model.Movie;
 import com.BaiTapLon.model.Promotion;
+import com.BaiTapLon.service.FoodService;
 import com.BaiTapLon.service.MovieService;
 import com.BaiTapLon.service.PromotionService;
 
@@ -34,6 +36,9 @@ public class HomeController {
 
     @Autowired
     private MovieService movieService;
+
+    @Autowired
+    private FoodService foodService;
     
     @GetMapping("/home")
     public String Home(Model model){
@@ -250,6 +255,26 @@ public class HomeController {
 
         return email;
 
+    }
+
+    @GetMapping("/bookTicket/{id}")
+    public String BookTicket(@ModelAttribute("id") int id, Model model){
+
+        Movie movie = movieService.getMovieById(id);
+
+        String email = getUsername();
+
+        String username = custormerService.findByUsername(email);
+
+        List<Food> foods = foodService.getAllFood();
+
+        model.addAttribute("Food", foods);
+
+        model.addAttribute("name", username);
+
+        model.addAttribute("Movie", movie);
+
+        return "BookTicket";
     }
 
     public String getRole(){

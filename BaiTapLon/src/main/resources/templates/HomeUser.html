@@ -103,15 +103,15 @@
 
 
     <section class="banner-section">
-        <i class='bx bxs-chevron-left'></i>
-        <div class="banner-container" style="width: 4512px; left: 0px; display: block;">
+        <i class='bx bxs-chevron-left prev'></i>
+        <div class="banner-container">
             <div class="banner-item"><img th:src="@{./image/anh13.png}" alt="Phim 1"></div>
-            <!-- <div class="banner-item hide"><img src="phim2.jpg" alt="Phim 2"></div>
-            <div class="banner-item"><img src="phim_cam.jpg" alt="Phim 5"></div>
-            <div class="banner-item"><img src="phim3.jpg" alt="Phim 3"></div>
-            <div class="banner-item"><img src="phim4.jpg" alt="Phim 4"></div> -->
+            <div class="banner-item"><img th:src="@{./image/anh11.png}" alt="Phim 2"></div>
+            <div class="banner-item"><img th:src="@{./image/anh10.png}" alt="Phim 5"></div>
+            <div class="banner-item"><img th:src="@{./image/anh8.png}" alt="Phim 3"></div>
+            <div class="banner-item"><img th:src="@{./image/anhh9.png}" alt="Phim 4"></div>
         </div>
-        <i class='bx bxs-chevron-right'></i>
+        <i class='bx bxs-chevron-right next'></i>
     </section>
 
     <section class="movies-section">
@@ -122,7 +122,7 @@
                 <div class="movie-item">
                     <img th:src="@{'/image/' + ${m.posterMovie}}">
                     <h3 th:text="${m.nameMovie}"></h3>
-                    <a th:href="@{#}" class="ticket-button">Đặt Vé Ngay</a>
+                    <a th:href="@{/bookTicket/{id}(id=${m.movieId})}" class="ticket-button">Đặt Vé Ngay</a>
                 </div>
             </a>
 
@@ -207,7 +207,55 @@
     let dropdownMenyu = document.querySelector('.dropdown-menu')
 
     navItem.addEventListener('click', function(){
-    dropdownMenyu.classList.toggle('hide')
-})
+        dropdownMenyu.classList.toggle('hide')
+    })
+
+    const sliderTrack = document.querySelector('.banner-container');
+    const banners = document.querySelectorAll('.banner-item');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    let currentIndex = 0;
+    const totalBanners = banners.length;
+    const bannerWidth = banners[0].offsetWidth + 20; 
+    let autoSlideInterval;
+
+    function updateSliderPosition() {
+        sliderTrack.style.transform = `translateX(-${currentIndex * bannerWidth}px)`;
+    }
+
+    function nextBanner() {
+        currentIndex = (currentIndex + 1) % totalBanners;
+        updateSliderPosition();
+    }
+
+    function prevBanner() {
+        currentIndex = (currentIndex - 1 + totalBanners) % totalBanners;
+        updateSliderPosition();
+    }
+
+    // Auto slide every 4 seconds
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextBanner, 4000);
+    }
+
+    // Stop auto slide on user interaction
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide(); // Restart auto slide after interaction
+    }
+
+    // Event listeners for buttons
+    nextButton.addEventListener('click', () => {
+        stopAutoSlide();
+        nextBanner();
+    });
+
+    prevButton.addEventListener('click', () => {
+        stopAutoSlide();
+        prevBanner();
+    });
+
+    startAutoSlide()
+
 </script>
 </html>
