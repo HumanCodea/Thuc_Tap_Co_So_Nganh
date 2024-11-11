@@ -17,12 +17,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.BaiTapLon.auth.service.CustormerService;
+import com.BaiTapLon.model.Bill;
+import com.BaiTapLon.model.Bill_Food;
 import com.BaiTapLon.model.Food;
 import com.BaiTapLon.model.Movie;
 import com.BaiTapLon.model.Promotion;
+import com.BaiTapLon.model.Ticket;
+import com.BaiTapLon.service.BillFoodService;
+import com.BaiTapLon.service.BillService;
 import com.BaiTapLon.service.FoodService;
 import com.BaiTapLon.service.MovieService;
 import com.BaiTapLon.service.PromotionService;
+import com.BaiTapLon.service.TicketService;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 @Controller
 @RequestMapping(path = "")
@@ -39,7 +46,16 @@ public class HomeController {
 
     @Autowired
     private FoodService foodService;
+
+    @Autowired
+    private BillService billService;
+
+    @Autowired
+    private TicketService ticketService;
     
+    @Autowired
+    private BillFoodService billFoodService;
+
     @GetMapping("/home")
     public String Home(Model model){
 
@@ -275,6 +291,28 @@ public class HomeController {
         model.addAttribute("Movie", movie);
 
         return "BookTicket";
+    }
+
+    @GetMapping("/billDetail")
+    public String BillDetail(Model model){
+
+        String email = getUsername();
+
+        String username = custormerService.findByUsername(email);
+
+        model.addAttribute("name", username);
+
+        return "BillDetail";
+    }
+
+    @GetMapping("/historyBill/{id}")
+    public String HistoryBill(@ModelAttribute("id") int id,Model model){
+
+        List<Bill> bills = billService.getAllBills(id);
+
+        model.addAttribute("Bill", bills);
+
+        return "ManageHistoryTicket";
     }
 
     public String getRole(){

@@ -7,9 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,12 +35,7 @@ public class Food {
     @NotBlank(message = "This food image field can not be blank")
     private String foodImage;
 
-    @ManyToMany
-    @JoinTable(
-        name = "bill_food",
-        joinColumns = @JoinColumn(name = "foodId"),
-        inverseJoinColumns = @JoinColumn(name = "billId")
-    )
-    private List<Bill> bills;
+    @OneToMany(mappedBy = "food")
+    private List<Bill_Food> bill_Foods;
 
 }

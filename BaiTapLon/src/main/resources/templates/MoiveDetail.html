@@ -236,7 +236,7 @@
             <div class="movie-details-content" th:object="${Movie}">
                 <div class="movie-booking-img">
                     <img th:src="@{'/image/' + ${Movie.posterMovie}}" alt="" class="movie-img">
-                    <a th:href="@{/buyTicket}" th:if="${Movie.status == 'DC' }" class="movie-booking">
+                    <a th:href="@{/bookTicket/{id}(id=${Movie.movieId})}" th:if="${Movie.status == 'DC' }" class="movie-booking">
                         Buy Ticket
                     </a>
                     <a th:href="@{#}" th:if="${Movie.status == 'SC' }" class="movie-booking">

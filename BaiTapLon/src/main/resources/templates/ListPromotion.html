@@ -177,7 +177,7 @@
         <div class="movie-card" th:each="p :${Promotion}">
             <a th:href="@{/promotion_detail/{id}(id=${p.promotionId})}">
             <img th:src="@{'/image/' + ${p.promotionImage}}">
-            <div class="movie-info">
+            <div class="movie-info" style="display: block;">
                 <div class="movie-title" th:text="${p.namePromotion}"></div>
                 <div class="movie-director" th:text="${p.expirated}"></div>
             </div>
