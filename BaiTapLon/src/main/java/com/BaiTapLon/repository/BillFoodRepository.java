@@ -14,4 +14,10 @@ public interface BillFoodRepository extends JpaRepository<Bill_Food, Integer>{
     @Query("Select bl From Bill_Food bl Where bl.bill.billId = :billId")
     public List<Bill_Food> findBillFoodsByBillId(int billId);
 
+    @Query("Select bl.food.foodId From Bill_Food bl Where bl.bill.billId = :billId")
+    public int findFoodIdByBillId(int billId);
+
+    @Query("Select bl.quantityFood From Bill_Food bl Where bl.bill.billId = :billId")
+    public int findQualityFoodByBillId(int billId);
+
 }

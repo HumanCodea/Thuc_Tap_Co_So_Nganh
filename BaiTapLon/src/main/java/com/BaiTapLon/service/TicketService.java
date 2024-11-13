@@ -18,4 +18,8 @@ public class TicketService {
         return ticketRepository.findTicketsByBillId(billId);
     }
 
+    public int getTicketId(int billId){
+        return ticketRepository.findTicketIdByBillId(billId);
+    }
+
 }

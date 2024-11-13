@@ -13,5 +13,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer>{
     
     @Query("Select t From Ticket t Where t.bill.billId = :billId")
     public List<Ticket> findTicketsByBillId(int billId);
+
+    @Query("Select t.ticketId From Ticket t Where t.bill.billId = :billId")
+    public int findTicketIdByBillId(int billId);
  
 }
