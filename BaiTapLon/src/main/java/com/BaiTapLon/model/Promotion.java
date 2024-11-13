@@ -41,6 +41,8 @@ public class Promotion {
     @NotBlank(message = "This promotion image field can not be blank")
     private String promotionImage;
 
+    private int pricePromotion;
+
     @OneToMany(mappedBy = "promotion")
     private List<Bill> bills;
 

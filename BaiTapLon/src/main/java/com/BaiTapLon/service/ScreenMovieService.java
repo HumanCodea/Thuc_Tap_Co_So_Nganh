@@ -30,4 +30,8 @@ public class ScreenMovieService {
         return screenMovieRepository.findById(id).get();
     }
 
+    public List<ScreeningMovie> getAllScreeningMovies(int movieId){
+        return screenMovieRepository.findScreeningMoviesByMovieId(movieId);
+    }
+
 }

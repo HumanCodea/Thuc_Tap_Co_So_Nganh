@@ -180,7 +180,7 @@
             <div class="movie-info">
                 <div class="movie-title" th:text="${m.nameMovie}"></div>
                 <div class="movie-director" th:text="${m.authorMovie}"></div>
-                <button class="ticket-button"><a style="color: white;" href="#">Đặt Vé Ngay</a></button>
+                <button class="ticket-button"><a style="color: white;" th:href="@{/bookTicket/{id}(id=${m.movieId})}">Đặt Vé Ngay</a></button>
             </div>
             </a>
         </div>

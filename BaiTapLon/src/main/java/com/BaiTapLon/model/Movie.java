@@ -66,9 +66,6 @@ public class Movie {
     private String linkTrailer;
 
     @OneToMany(mappedBy = "movie")
-    private List<Ticket> ticket;
-
-    @OneToMany(mappedBy = "movie")
     private List<ScreeningMovie> screeningMovies;
     
 }

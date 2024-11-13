@@ -28,7 +28,7 @@ public class Ticket {
     private int value;
 
     @ManyToOne
-    private Movie movie;
+    private ScreeningMovie screeningMovie;
 
     @ManyToOne
     private Seats seats;

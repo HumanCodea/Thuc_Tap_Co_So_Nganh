@@ -20,9 +20,11 @@ import com.BaiTapLon.auth.service.CustormerService;
 import com.BaiTapLon.model.Food;
 import com.BaiTapLon.model.Movie;
 import com.BaiTapLon.model.Promotion;
+import com.BaiTapLon.model.ScreeningMovie;
 import com.BaiTapLon.service.FoodService;
 import com.BaiTapLon.service.MovieService;
 import com.BaiTapLon.service.PromotionService;
+import com.BaiTapLon.service.ScreenMovieService;
 @Controller
 @RequestMapping(path = "")
 public class HomeController {
@@ -38,6 +40,9 @@ public class HomeController {
 
     @Autowired
     private FoodService foodService;
+
+    @Autowired
+    private ScreenMovieService screenMovieService;
 
     @GetMapping("/home")
     public String Home(Model model){
@@ -267,11 +272,15 @@ public class HomeController {
 
         List<Food> foods = foodService.getAllFood();
 
+        List<ScreeningMovie> screenings = screenMovieService.getAllScreeningMovies(id);
+
         model.addAttribute("Food", foods);
 
         model.addAttribute("name", username);
 
         model.addAttribute("Movie", movie);
+
+        model.addAttribute("Screen", screenings);
 
         return "BookTicket";
     }

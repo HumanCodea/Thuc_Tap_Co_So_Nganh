@@ -32,6 +32,8 @@ public class Bill {
     @NotBlank(message = "This buy date field can not be blank")
     private String buyDate;
 
+    private int quantityTicket;
+
     private int totalMoney;
 
     @ManyToOne
