@@ -325,6 +325,7 @@
                                 </thead>
                                 <tbody>
                                     <tr onclick="selectShowtime(this)" th:each="s :${Screen}">
+                                        <td style="display: none;" th:text="${s.sreeningId}" class="sreeningId" th:data-id="${s.sreeningId}"></td>
                                         <td th:text="${s.dates}"></td>
                                         <td th:text="${s.hour}"></td>
                                         <td th:text="${s.screeningRoom.roomName}"></td>
@@ -357,6 +358,7 @@
                     </thead>
                     <tbody>
                         <tr th:each="f :${Food}">
+                            <td style="display: none;" th:text="${f.foodId}" id="foodId"></td>
                             <td th:text="${f.nameFood}"></td>
                             <td class="movie-poster">
                                 <img th:src="@{'/image/' + ${f.foodImage}}" alt="" style="width: 100px;height: 150px;">
@@ -372,75 +374,17 @@
             <div class="discount-section">
                 <h3>Chọn khuyến mãi</h3>
                 <div class="promotion-container">
-                    <div class="promotion" onclick="selectPromotion(this)">
-                        <p>Giảm 20% cho lễ Halloween</p>
-                    </div>
-                    <div class="promotion" onclick="selectPromotion(this)">
-                        <p>Giảm 30% cho lễ Giáng sinh</p>
+                    <div class="promotion" onclick="selectPromotion(this)" th:each="p :${Promotion}">
+                        <span style="display: none;" th:text="${p.promotionId}" class="promotionId" th:data-id="${p.promotionId}"></span>
+                        <p th:text="${p.namePromotion + '  ---  ' + p.detailPromotion}"></p>
                     </div>
                 </div>
             </div>
 
-            <button class="pay-button"><a th:href="@{/billDetail}" style="color: white;text-decoration: none;">Thanh toán</a></button>
+            <button class="pay-button" id="checkout-btn">Thanh toán</button>
+            <!-- <a th:href="@{/billDetail}" style="color: white;text-decoration: none;"></a> -->
         </div>
     </div>
 </body>
-<script>
-    let selectedRow = null;
-
-    function selectShowtime(row) {
-        if (selectedRow) {
-            selectedRow.classList.remove('selected');
-        }
-        selectedRow = row;
-        row.classList.add('selected');
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const payButton = document.querySelector(".pay-button");
-
-        payButton.addEventListener("click", () => {
-            payButton.classList.toggle("clicked");
-        });
-    });
-
-    // seat section
-    document.addEventListener("DOMContentLoaded", () => {
-        const seatContainer = document.getElementById("seat-selection");
-        const rows = ["A", "B", "C", "D", "E", "F"];
-        const cols = Array.from({ length: 10 }, (_, i) => i + 1);
-
-        rows.forEach(row => {
-            cols.forEach(col => {
-                const seat = document.createElement("div");
-                seat.classList.add("seat");
-                seat.innerText = `${row}${col}`;
-                seat.onclick = () => {
-                    seat.classList.toggle("selected");
-                    updateTotal();
-                };
-                seatContainer.appendChild(seat);
-            });
-        });
-
-        function updateTotal() {
-            const selectedSeats = document.querySelectorAll('.seat.selected');
-            document.getElementById("total-amount").innerText = 0 + '₫';
-        }
-    });
-
-    // Promotion selection function
-    function selectPromotion(element) {
-        const promotions = document.querySelectorAll('.promotion');
-        promotions.forEach(promo => promo.classList.remove('selected'));
-        element.classList.add('selected');
-    }
-
-    let navItem = document.querySelector(".nav-item")
-    let dropdownMenyu = document.querySelector('.dropdown-menu')
-
-    navItem.addEventListener('click', function(){
-        dropdownMenyu.classList.toggle('hide')
-    })
-</script>
+<script th:src="@{/js/bill.js}"></script>
 </html>

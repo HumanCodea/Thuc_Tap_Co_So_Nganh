@@ -22,9 +22,6 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticketId;
 
-    @NotBlank(message = "This ticket status field can not be blank")
-    private String ticketStatus;
-
     private int value;
 
     @ManyToOne

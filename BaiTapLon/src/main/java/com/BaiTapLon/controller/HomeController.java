@@ -274,6 +274,8 @@ public class HomeController {
 
         List<ScreeningMovie> screenings = screenMovieService.getAllScreeningMovies(id);
 
+        List<Promotion> promotions = promotionService.getAllPromotion();
+
         model.addAttribute("Food", foods);
 
         model.addAttribute("name", username);
@@ -281,6 +283,8 @@ public class HomeController {
         model.addAttribute("Movie", movie);
 
         model.addAttribute("Screen", screenings);
+
+        model.addAttribute("Promotion", promotions);
 
         return "BookTicket";
     }
