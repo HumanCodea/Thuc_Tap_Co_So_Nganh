@@ -30,4 +30,8 @@ public class PromotionService {
         promotionRepository.deleteById(id);
     }
 
+    public Promotion getPromotionById(int promotionId){
+        return promotionRepository.findById(promotionId).get();
+    }
+
 }

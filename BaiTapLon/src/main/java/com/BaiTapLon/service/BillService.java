@@ -18,4 +18,8 @@ public class BillService {
         return billRepository.findBillsByCustomerId(custormerId);
     }
 
+    public void StoreBill(Bill bill){
+        billRepository.save(bill);
+    }
+
 }

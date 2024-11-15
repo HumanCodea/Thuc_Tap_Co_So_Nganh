@@ -30,4 +30,8 @@ public class FoodService {
         foodRepository.deleteById(id);
     }
 
+    public int getPriceFood(int foodId){
+        return foodRepository.findValueByFoodId(foodId);
+    }
+
 }

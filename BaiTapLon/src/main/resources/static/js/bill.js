@@ -1,7 +1,5 @@
 
 let screeningId = null;
-let foodId = null;
-let promotionId = null;
 let quanityTicket = null;
 let selectedSeats = [];
 let selectedPromotion = null;
@@ -84,6 +82,12 @@ document.getElementById("checkout-btn").onclick = () => {
         return;
     }
 
+    // console.log(screeningId)
+    // console.log(selectedFood)
+    // console.log(quanityTicket)
+    // console.log(selectedSeats)
+    // console.log(selectedPromotion)
+
     // Tạo đối tượng dữ liệu để gửi lên server
     const orderData = {
         screeningId: screeningId,       // ID suất chiếu
@@ -97,7 +101,7 @@ document.getElementById("checkout-btn").onclick = () => {
     fetch('/saveBill', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(orderData)  // Chuyển đối tượng thành JSON
     })
