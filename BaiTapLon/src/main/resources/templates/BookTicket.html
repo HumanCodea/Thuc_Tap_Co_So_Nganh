@@ -259,12 +259,114 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        /* billPopup */
+        .container1 {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .show{
+            display: flex;
+        }
+
+        .bill-form {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            margin-bottom: 70px;
+            margin-top: 20px;
+        }
+
+        .bill-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .bill-header h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+        .bill-header .line2 {
+            margin-left: 100px;
+        }
+
+
+        .bill-content {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .bill-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .bill-total {
+            font-weight: bold;
+            font-size: 18px;
+            color: #000;
+        }
+
+
+        .qr-code {
+            margin-left: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        .qr-code img {
+            width: 270px;
+            margin-left: 30px;
+        }
+        .close{
+            padding-top: 10px;
+        }
+        .close a{
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+        .qr-code .detail{
+            font-size: 20px;
+            margin-left: 45px;
+            font-weight: bold;
+        }
+        .container1 .close button{
+            background-color: #4caf50;
+            width: 150px;
+            height: 30px;
+            line-height: 30px;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+
+
     </style>
 
     <nav class="top-nav">
         <div class="nav-container">
             <div class="logo">
-                <a th:href="@{/home}">
+                <a th:href="@{/homeUser}">
                     <img th:src="@{/image/logo.png}" alt="Logo">
                 </a>
             </div>
@@ -382,9 +484,50 @@
             </div>
 
             <button class="pay-button" id="checkout-btn">Thanh toán</button>
-            <!-- <a th:href="@{/billDetail}" style="color: white;text-decoration: none;"></a> -->
         </div>
     </div>
+
+    <div class="container1" id="billPopup">
+        <div class="bill-form">
+            <div class="bill-content-container">
+                <div class="bill-header">
+                    <h2>Hóa đơn đặt vé</h2>
+                </div>
+                <div class="bill-content">
+                    <div class="bill-row">
+                        <span>Tổng số vé đặt:</span>
+                        <span>3 vé</span>
+                    </div>
+                    <div class="bill-row">
+                        <span>Ngày đặt:</span>
+                        <span>10/11/2024</span>
+                    </div>
+                    <div class="bill-row">
+                        <span>Đồ ăn nước uống:</span>
+                        <span>Bắp rang + Coca (2 phần)</span>
+                    </div>
+                    <div class="bill-row">
+                        <span>Mã giảm giá:</span>
+                        <span>SUMMER2023</span>
+                    </div>
+                    <div class="bill-row bill-total">
+                        <span>Tổng tiền thanh toán:</span>
+                        <span>450,000 VNĐ</span>
+                    </div>
+                    <div class="close">
+                        <button id="closeButton"><a th:href="@{/phimDangChieu}">Đặt vé khác</a></button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="qr-code">
+                <div class="detail">Xem thông tin chi tiết vé</div>
+                <img th:src="@{/image/qrcode.png}" alt="QR Code">
+            </div>
+        </div>
+    </div>
+
 </body>
 <script th:src="@{/js/bill.js}"></script>
 </html>

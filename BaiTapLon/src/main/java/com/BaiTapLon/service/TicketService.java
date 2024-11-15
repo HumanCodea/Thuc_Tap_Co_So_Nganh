@@ -18,8 +18,12 @@ public class TicketService {
         return ticketRepository.findTicketsByBillId(billId);
     }
 
-    public int getTicketId(int billId){
+    public List<Integer> getTicketId(int billId){
         return ticketRepository.findTicketIdByBillId(billId);
+    }
+
+    public void saveTicket(Ticket ticket){
+        ticketRepository.save(ticket);
     }
 
 }

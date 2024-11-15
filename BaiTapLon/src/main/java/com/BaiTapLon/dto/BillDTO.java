@@ -1,5 +1,7 @@
 package com.BaiTapLon.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +16,9 @@ public class BillDTO {
     private int billId;
     private String buyDate;
     private int custormerId;
-    private int ticketId;
+    private List<Integer> ticketId;
     private int promotionId;
-    private int foodId;
-    private int quantityFood;
+    private List<Integer> foodId;
     private int totalMoney;
 
 }

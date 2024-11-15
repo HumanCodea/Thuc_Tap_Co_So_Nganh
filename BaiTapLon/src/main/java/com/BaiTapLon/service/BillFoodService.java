@@ -19,12 +19,16 @@ public class BillFoodService {
         return billFoodRepository.findBillFoodsByBillId(billId);
     }
 
-    public int getFoodId(int billId){
+    public List<Integer> getFoodId(int billId){
         return billFoodRepository.findFoodIdByBillId(billId);
     }
 
     public int getQualityFood(int billId){
         return billFoodRepository.findQualityFoodByBillId(billId);
+    }
+
+    public void saveBillFood(Bill_Food bill_Food){
+        billFoodRepository.save(bill_Food);
     }
 
 }

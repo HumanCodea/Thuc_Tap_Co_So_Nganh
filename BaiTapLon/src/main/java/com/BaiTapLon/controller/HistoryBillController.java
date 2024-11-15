@@ -1,7 +1,5 @@
 package com.BaiTapLon.controller;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,28 +36,19 @@ public class HistoryBillController {
 
         List<BillDTO> billDTOs = new ArrayList<>();
 
-        LocalDateTime time = LocalDateTime.now();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-        String dateTimeString = time.format(formatter);
-
         for(Bill b : bills){
 
             BillDTO billDTO = new BillDTO();
 
-            int ticketId = ticketService.getTicketId(b.getBillId());
+            List<Integer> ticketId = ticketService.getTicketId(b.getBillId());
 
-            int foodId = billFoodService.getFoodId(b.getBillId());
-
-            int quantityFood = billFoodService.getQualityFood(b.getBillId());
+            List<Integer> foodId = billFoodService.getFoodId(b.getBillId());
 
             billDTO.setBillId(b.getBillId());
             billDTO.setCustormerId(b.getCustormer().getCustormerId());
             billDTO.setPromotionId(b.getPromotion().getPromotionId());
-            billDTO.setBuyDate(dateTimeString);
+            billDTO.setBuyDate(b.getBuyDate());
             billDTO.setTicketId(ticketId);
-            billDTO.setQuantityFood(quantityFood);
             billDTO.setFoodId(foodId);
             billDTO.setTotalMoney(b.getTotalMoney());
 

@@ -30,7 +30,7 @@ public class UserController {
     @PostMapping("/saveUser")
     public String SaveUser(@ModelAttribute Custormer custormer){
         custormerService.saveCustormer(custormer);
-        return "redirect:/register";
+        return "redirect:/login?successfully";
     }
 
 }

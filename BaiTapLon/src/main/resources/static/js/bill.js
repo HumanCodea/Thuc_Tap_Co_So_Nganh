@@ -136,3 +136,16 @@ function getSelectedFood() {
 
     return selectedFood;
 }
+
+let billPopup = document.querySelector(".container1")
+
+document.getElementById("checkout-btn").addEventListener("click", function () {
+    billPopup.classList.toggle('show')
+    window.alert("Ban da dat ve thanh cong")
+});
+
+billPopup.addEventListener('click', function(e){
+    if(e.target == e.currentTarget){
+        billPopup.classList.toggle('show')
+    }
+})

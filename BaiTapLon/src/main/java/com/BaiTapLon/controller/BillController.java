@@ -18,16 +18,21 @@ import com.BaiTapLon.auth.service.CustormerService;
 import com.BaiTapLon.dto.FoodItem;
 import com.BaiTapLon.dto.OrderData;
 import com.BaiTapLon.model.Bill;
+import com.BaiTapLon.model.Bill_Food;
+import com.BaiTapLon.model.Food;
 import com.BaiTapLon.model.Promotion;
 import com.BaiTapLon.model.ScreeningMovie;
 import com.BaiTapLon.model.ScreeningRoom;
 import com.BaiTapLon.model.Seats;
+import com.BaiTapLon.model.Ticket;
+import com.BaiTapLon.service.BillFoodService;
 import com.BaiTapLon.service.BillService;
 import com.BaiTapLon.service.FoodService;
 import com.BaiTapLon.service.PromotionService;
 import com.BaiTapLon.service.RoomService;
 import com.BaiTapLon.service.ScreenMovieService;
 import com.BaiTapLon.service.SeatService;
+import com.BaiTapLon.service.TicketService;
 
 @RestController
 @RequestMapping()
@@ -53,6 +58,12 @@ public class BillController {
 
     @Autowired
     private SeatService seatService;
+
+    @Autowired
+    private TicketService ticketService;
+
+    @Autowired
+    private BillFoodService billFoodService;
 
     @PostMapping("/saveBill")
     public void SaveBill(@RequestBody OrderData orderData){
@@ -100,21 +111,40 @@ public class BillController {
 
         Custormer custormer = custormerService.findCustormerById(custormerId);
         
-        for(String s : selectedSeats){
-            Seats seats = new Seats();
-            seats.setChairName(s);
-            seats.setChair_status("ĐĐ");
-            seats.setScreeningRoom(screeningRoom);
-
-            seatService.saveSeat(seats);
-        }
-        
         bill.setBuyDate(dateTimeString);
         bill.setTotalMoney(totalResult);
         bill.setQuantityTicket(quanityTicket);
         bill.setCustormer(custormer);
-
         billService.StoreBill(bill);
+
+        for(String s : selectedSeats){
+            // luu seat
+            Seats seats = new Seats();
+            seats.setChairName(s);
+            seats.setChair_status("ĐĐ");
+            seats.setScreeningRoom(screeningRoom);
+            seatService.saveSeat(seats);
+
+            // luu ticket
+            Ticket ticket = new Ticket();
+            ticket.setValue(valueTicket);
+            ticket.setBill(bill);
+            ticket.setScreeningMovie(screeningMovie);
+            ticket.setSeats(seats);
+            ticketService.saveTicket(ticket);
+        }
+
+        if(!foodItems.isEmpty()){
+            for(FoodItem f : foodItems){
+                //luu bill food
+                Food food = foodService.findFoodById(f.getFoodId());
+                Bill_Food bill_Food = new Bill_Food();
+                bill_Food.setQuantityFood(f.getQuantity());
+                bill_Food.setFood(food);
+                bill_Food.setBill(bill);
+                billFoodService.saveBillFood(bill_Food);
+            }
+        }
 
     }
 
