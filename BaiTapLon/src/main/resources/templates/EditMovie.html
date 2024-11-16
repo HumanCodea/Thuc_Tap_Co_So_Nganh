@@ -205,6 +205,15 @@
         </form>
     </div>
 
+    <div id="deleteModal" class="modal1">
+        <div class="modal-content1">
+            <p>Bạn có chắc chắn muốn cập nhận phim không?</p>
+            <div class="modal-buttons">
+                <button id="confirmDelete" class="btn btn-danger">Đồng ý</button>
+                <button id="cancelDelete" class="btn btn-secondary">Hủy</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 <script>
@@ -224,15 +233,33 @@
         container.classList.toggle("large1")
     }
 
-    // function submitForm() {
-    //     const form = document.getElementById('addMovieForm');
-    //     if (form.checkValidity()) {
-    //         alert('Thông tin phim đã được thêm thành công!');
-    //         form.reset();
-    //     } else {
-    //         alert('Vui lòng điền đầy đủ thông tin.');
-    //     }
-    // }
+    // Hiển thị modal khi nhấn nút "Cập nhật"
+    document.getElementById("addMovieForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Chặn hành vi mặc định của form
+    
+    // Hiển thị modal xác nhận
+        const modal = document.getElementById("deleteModal");
+        modal.style.display = "flex";
+    });
+
+    // Ẩn modal khi nhấn nút "Hủy"
+    document.getElementById("cancelDelete").onclick = function () {
+        closeConfirmationModal();
+        window.location.href = "/manageMoive";
+    };
+
+    // Hàm ẩn modal
+    function closeConfirmationModal() {
+        const modal = document.getElementById("deleteModal");
+        modal.style.display = "none";
+    }
+
+    // Xử lý khi nhấn nút "OK" để gửi form
+    document.getElementById("confirmDelete").onclick = function () {
+        alert("Phim đã được thêm mới thành công!");
+        document.getElementById("addMovieForm").submit(); // Gửi form sau khi xác nhận
+        closeConfirmationModal(); // Đóng modal
+    };
 
 </script>
 </html>
