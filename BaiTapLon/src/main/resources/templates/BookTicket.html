@@ -385,9 +385,9 @@
                 </li>
                 <ul class="dropdown-menu hide">
                     <li><a class="dropdown-item" target="_blank" >Trang cá nhân</a></li>
-                    <li><a class="dropdown-item" target="_blank" th:href="@{/add_money}" >Nạp tiền</a></li> <!-- target="_blank" mo qua 1 trang moi -->
+                    <li><a class="dropdown-item" target="_blank" th:href="@{/add_money}" >Xem LSĐV</a></li> <!-- target="_blank" mo qua 1 trang moi -->
                     <li>
-                        <a ces:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/logout}">Sign out</a>
+                        <a ces:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/logout}">Đăng Xuất</a>
                     </li>
                 </ul>
             </div>
@@ -465,6 +465,7 @@
                             <td class="movie-poster">
                                 <img th:src="@{'/image/' + ${f.foodImage}}" alt="" style="width: 100px;height: 150px;">
                             </td>
+                            <td style="display: none;"><input th:value="${f.priceFood}" type="number" class="priceFood"></td>
                             <td th:text="@{${f.priceFood} + 'VNĐ'}"></td>
                             <td><input class="sl" type="number" min="0" placeholder="0"></td>
                           </tr>
@@ -478,11 +479,14 @@
                 <div class="promotion-container">
                     <div class="promotion" onclick="selectPromotion(this)" th:each="p :${Promotion}">
                         <span style="display: none;" th:text="${p.promotionId}" class="promotionId" th:data-id="${p.promotionId}"></span>
+                        <span style="display: none;" th:text="${p.pricePromotion}" class="pricePromotion" th:data-id="${p.pricePromotion}"></span>
                         <p th:text="${p.namePromotion + '  ---  ' + p.detailPromotion}"></p>
                     </div>
                 </div>
             </div>
-
+            <!-- <div class="total-section">
+                <h3>Tổng tiền: <span id="total-amount"></span></h3>
+            </div> -->
             <button class="pay-button" id="checkout-btn">Thanh toán</button>
         </div>
     </div>
@@ -496,15 +500,15 @@
                 <div class="bill-content">
                     <div class="bill-row">
                         <span>Tổng số vé đặt:</span>
-                        <span>3 vé</span>
+                        <span id="quanityTicket"></span>
                     </div>
                     <div class="bill-row">
                         <span>Ngày đặt:</span>
-                        <span>10/11/2024</span>
+                        <span id="buyDate"></span>
                     </div>
                     <div class="bill-row">
                         <span>Đồ ăn nước uống:</span>
-                        <span>Bắp rang + Coca (2 phần)</span>
+                        <span>Bắp rang + Coca<span>(2 phần)</span></span>
                     </div>
                     <div class="bill-row">
                         <span>Mã giảm giá:</span>
@@ -512,7 +516,7 @@
                     </div>
                     <div class="bill-row bill-total">
                         <span>Tổng tiền thanh toán:</span>
-                        <span>450,000 VNĐ</span>
+                        <span id="totalResult"></span>
                     </div>
                     <div class="close">
                         <button id="closeButton"><a th:href="@{/phimDangChieu}">Đặt vé khác</a></button>

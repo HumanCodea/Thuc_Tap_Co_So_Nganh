@@ -1,8 +1,9 @@
-
 let screeningId = null;
 let quanityTicket = null;
 let selectedSeats = [];
 let selectedPromotion = null;
+let pricePromotion = 0;
+let totalFood = 0;
 let navItem = document.querySelector(".nav-item")
 let dropdownMenyu = document.querySelector('.dropdown-menu')
 
@@ -62,6 +63,7 @@ function selectPromotion(element) {
         // Đánh dấu mục hiện tại là 'selected'
         element.classList.add('selected');
         selectedPromotion = element.querySelector('.promotionId').getAttribute('data-id'); // Lưu lại ID khuyến mãi 
+        pricePromotion = element.querySelector('.pricePromotion').getAttribute('data-id')
     }
 }
 
@@ -70,15 +72,15 @@ document.getElementById("checkout-btn").onclick = () => {
 
     const selectedFood = getSelectedFood()
 
-    // Kiểm tra nếu không có ghế được chọn
-    if (selectedSeats.length === 0) {
-        alert("Vui lòng chọn ít nhất một ghế!");
+     // kiem tra suat chieu
+     if (screeningId === null) {
+        alert("Vui lòng chọn ít nhất một suất chiếu!");
         return;
     }
 
-    // kiem tra suat chieu
-    if (screeningId === null) {
-        alert("Vui lòng chọn ít nhất một suất chiếu!");
+    // Kiểm tra nếu không có ghế được chọn
+    if (selectedSeats.length === 0) {
+        alert("Vui lòng chọn ít nhất một ghế!");
         return;
     }
 
@@ -87,6 +89,9 @@ document.getElementById("checkout-btn").onclick = () => {
     // console.log(quanityTicket)
     // console.log(selectedSeats)
     // console.log(selectedPromotion)
+
+    billPopup.classList.toggle('show')
+    window.alert("Ban da dat ve thanh cong")
 
     // Tạo đối tượng dữ liệu để gửi lên server
     const orderData = {
@@ -106,6 +111,7 @@ document.getElementById("checkout-btn").onclick = () => {
         body: JSON.stringify(orderData)  // Chuyển đối tượng thành JSON
     })
 
+    updateTotal()
 };
 
 // selectFood
@@ -118,7 +124,7 @@ function getSelectedFood() {
     rows.forEach(row => {
         // Lấy ID món ăn
         const foodId = row.querySelector("#foodId");
-        
+
         // Nếu không có ID món ăn, bỏ qua row này
         if (!foodId) return;
 
@@ -131,21 +137,31 @@ function getSelectedFood() {
                 foodId: foodId.innerText,  // Lấy foodId từ text trong ô foodId
                 quantity: quantity         // Số lượng món ăn
             });
+            const price = row.querySelector("input.priceFood");
+            const priceFood = parseInt(price.value, 10);
+            totalFood += priceFood * quantity
         }
     });
-
     return selectedFood;
 }
 
 let billPopup = document.querySelector(".container1")
-
-document.getElementById("checkout-btn").addEventListener("click", function () {
-    billPopup.classList.toggle('show')
-    window.alert("Ban da dat ve thanh cong")
-});
 
 billPopup.addEventListener('click', function(e){
     if(e.target == e.currentTarget){
         billPopup.classList.toggle('show')
     }
 })
+
+function updateTotal() {
+
+    const totalMoney = quanityTicket * 99000 + totalFood;
+    const totalResult = totalMoney - totalMoney * pricePromotion / 100;
+
+    const today = new Date();
+
+    document.getElementById('quanityTicket').innerText=quanityTicket + ' vé'
+    document.getElementById('buyDate').innerText=today.toLocaleDateString('vi-VN')
+    document.getElementById('totalResult').innerText=totalResult + 'VNĐ'
+
+}

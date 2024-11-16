@@ -84,7 +84,7 @@ public class MovieController {
     }
 
     @PostMapping("/saveMovie")
-    public String saveMovie(@ModelAttribute Movie movie,@RequestParam("posterFile") MultipartFile posterMovie){
+    public String saveMovie(@ModelAttribute("movie") Movie movie,@RequestParam("posterFile") MultipartFile posterMovie){
 
         if(!posterMovie.isEmpty()){
             upLoadFile(posterMovie);

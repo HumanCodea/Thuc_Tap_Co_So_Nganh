@@ -104,6 +104,7 @@ public class ScreenMovieCon {
 
         ScreeningMovie screeningMovie = new ScreeningMovie();
 
+        screeningMovie.setSreeningId(screenDTO.getSreeningId());
         screeningMovie.setDates(screenDTO.getDates());
         screeningMovie.setHour(screenDTO.getHour());
         screeningMovie.setMovie(newMovie);
