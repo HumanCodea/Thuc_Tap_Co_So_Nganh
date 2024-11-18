@@ -102,7 +102,7 @@
                         <td th:text="${r.detailRoom}"></td>
                         <td>
                           <a style="color: hsl(240, 100%, 60%)" th:href="@{/editRoom/{id}(id=${r.roomId})}" title="Edit RoomMovie"><i class='bx bxs-edit ms-4'></i></a>
-                          <a style="color: hsl(0, 100%, 60%)" th:href="@{/deleteRoom/{id}(id=${r.roomId})}" title="Delete RoomMovie"><i class='bx bx-trash ms-4'></i></a>
+                          <a style="color: hsl(0, 100%, 60%)" th:href="@{/deleteRoom/{id}(id=${r.roomId})}" th:data-url="@{/deleteRoom/{id}(id=${r.roomId})}" title="Delete RoomMovie" onclick="showDeleteModal(event,this)"><i class='bx bx-trash ms-4'></i></a>
                         </td>
                       </tr>
                 </tbody>
@@ -110,6 +110,15 @@
         </div>
     </div>
 
+    <div id="deleteModal" class="modal1">
+        <div class="modal-content1">
+            <p>Bạn có chắc chắn muốn xóa không?</p>
+            <div class="modal-buttons">
+                <button id="confirmDelete" class="btn btn-danger">Đồng ý</button>
+                <button id="cancelDelete" class="btn btn-secondary">Hủy</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 <script>
@@ -131,6 +140,39 @@
         container.classList.toggle("large")
         content.classList.toggle("large1")
     }
+
+    // Hàm hiển thị modal và lưu URL cần xóa
+    function showDeleteModal(event, element) {
+        event.preventDefault();
+        const modal = document.getElementById("deleteModal");
+        modal.style.display = "flex";
+
+        // Lấy URL từ thuộc tính data-url của phần tử
+        const deleteUrl = element.getAttribute("data-url");
+        modal.setAttribute("data-delete-url", deleteUrl);
+    }
+
+    // Hàm đóng modal
+    function closeDeleteModal() {
+        const modal = document.getElementById("deleteModal");
+        modal.style.display = "none";
+    }
+
+    // Hàm xử lý khi nhấn nút "OK"
+    document.getElementById("confirmDelete").onclick = function () {
+        const modal = document.getElementById("deleteModal");
+        const deleteUrl = modal.getAttribute("data-delete-url");
+
+        // Kiểm tra xem URL có tồn tại không, nếu có thì chuyển hướng để xóa
+        if (deleteUrl) {
+            window.location.href = deleteUrl;
+        }
+        closeDeleteModal();
+        window.alert("Bạn đã xoá thành công")
+    };
+
+    // Hàm xử lý khi nhấn nút "Hủy"
+    document.getElementById("cancelDelete").onclick = closeDeleteModal;
 
 </script>
 </html>

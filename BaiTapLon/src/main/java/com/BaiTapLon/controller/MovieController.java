@@ -91,7 +91,7 @@ public class MovieController {
             movie.setPosterMovie(posterMovie.getOriginalFilename());
         }
 
-        movie.setStatus("DC");
+        movie.setStatus("SC");
         movieService.saveMovie(movie);
 
         return "redirect:/manageMoive";
