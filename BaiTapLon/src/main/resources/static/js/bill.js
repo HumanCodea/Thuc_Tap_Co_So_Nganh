@@ -6,6 +6,7 @@ let pricePromotion = 0;
 let totalFood = 0;
 let navItem = document.querySelector(".nav-item")
 let dropdownMenyu = document.querySelector('.dropdown-menu')
+let billPopup = document.querySelector(".container1")
 
 navItem.addEventListener('click', function(){
     dropdownMenyu.classList.toggle('hide')
@@ -90,9 +91,12 @@ document.getElementById("checkout-btn").onclick = () => {
     // console.log(selectedSeats)
     // console.log(selectedPromotion)
 
-    billPopup.classList.toggle('show')
-    window.alert("Ban da dat ve thanh cong")
+    createToast('success', 'Đặt vé thành công!'); // display notice
 
+    setTimeout(() => {
+        document.getElementById("billPopup").style.display = "flex"; // display bill after 6s
+    }, 6000);
+    
     // Tạo đối tượng dữ liệu để gửi lên server
     const orderData = {
         screeningId: screeningId,       // ID suất chiếu
@@ -103,14 +107,14 @@ document.getElementById("checkout-btn").onclick = () => {
     };
 
     // Gửi dữ liệu lên server qua API
-    fetch('/saveBill', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderData)  // Chuyển đối tượng thành JSON
-    })
-
+    // fetch('/saveBill', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(orderData)  // Chuyển đối tượng thành JSON
+    // })
+    billPopup.classList.toggle('show')
     updateTotal()
 };
 
@@ -145,8 +149,6 @@ function getSelectedFood() {
     return selectedFood;
 }
 
-let billPopup = document.querySelector(".container1")
-
 billPopup.addEventListener('click', function(e){
     if(e.target == e.currentTarget){
         billPopup.classList.toggle('show')
@@ -164,4 +166,25 @@ function updateTotal() {
     document.getElementById('buyDate').innerText=today.toLocaleDateString('vi-VN')
     document.getElementById('totalResult').innerText=totalResult + 'VNĐ'
 
+}
+
+// Notice book ticket success
+function createToast(status, message) {
+    const toast = document.createElement('div');
+    toast.classList.add('toast', status);
+    toast.innerHTML = `
+    <i class='bx bx-check-circle'></i>
+    <span class="message">${message}</span>
+    <span class="countdown"></span>
+    `;
+
+    document.getElementById('toasts').appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.animation = 'hide_slide 1s ease forwards';
+    }, 4000);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 6000);
 }
