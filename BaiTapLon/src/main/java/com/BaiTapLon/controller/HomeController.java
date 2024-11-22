@@ -2,6 +2,7 @@ package com.BaiTapLon.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,32 +52,27 @@ public class HomeController {
         List<Movie> movies = movieService.getAllMovie();
         List<Movie> movieDC = new ArrayList<>();
         List<Movie> movieSC = new ArrayList<>();
-        int a = 0,b=0;
 
         model.addAttribute("Promotion", promotions);
 
-        for(Movie m : movies){
-            if(m.getStatus().equals("DC")){
+        for (Movie m : movies) {
+            if (m.getStatus().equals("DC")) {
                 movieDC.add(m);
-                a++;
             }
-            if(a == 4){
-                break;
-            }
-        }
-
-        for(Movie m : movies){
-            if(m.getStatus().equals("SC")){
+            if (m.getStatus().equals("SC")) {
                 movieSC.add(m);
-                b++;
-            }
-            if(b == 4){
-                break;
             }
         }
 
-        model.addAttribute("MovieSC", movieSC);
-        model.addAttribute("MovieDC", movieDC);
+        Collections.shuffle(movieDC);
+        List<Movie> randomMovieDC = movieDC.subList(0, Math.min(4, movieDC.size()));
+
+        // Xáo trộn danh sách và chọn ngẫu nhiên 4 phim "SC"
+        Collections.shuffle(movieSC);
+        List<Movie> randomMovieSC = movieSC.subList(0, Math.min(4, movieSC.size()));
+
+        model.addAttribute("MovieSC", randomMovieSC);
+        model.addAttribute("MovieDC", randomMovieDC);
 
         return "Home";
     }
