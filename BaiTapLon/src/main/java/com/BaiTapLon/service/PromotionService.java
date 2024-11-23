@@ -34,4 +34,8 @@ public class PromotionService {
         return promotionRepository.findById(promotionId).get();
     }
 
+    public String findNamePromotionByPromotionId(int promotionId){
+        return promotionRepository.findNamePromotionByPromotionId(promotionId);
+    }
+
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.BaiTapLon.auth.service.CustormerService;
+import com.BaiTapLon.model.Bill;
 import com.BaiTapLon.model.Food;
 import com.BaiTapLon.model.Movie;
 import com.BaiTapLon.model.Promotion;
@@ -95,30 +96,24 @@ public class HomeController {
         List<Movie> movies = movieService.getAllMovie();
         List<Movie> movieDC = new ArrayList<>();
         List<Movie> movieSC = new ArrayList<>();
-        int a = 0,b=0;
-
-        for(Movie m : movies){
-            if(m.getStatus().equals("DC")){
+        for (Movie m : movies) {
+            if (m.getStatus().equals("DC")) {
                 movieDC.add(m);
-                a++;
             }
-            if(a == 4){
-                break;
-            }
-        }
-
-        for(Movie m : movies){
-            if(m.getStatus().equals("SC")){
+            if (m.getStatus().equals("SC")) {
                 movieSC.add(m);
-                b++;
-            }
-            if(b == 4){
-                break;
             }
         }
 
-        model.addAttribute("MovieSC", movieSC);
-        model.addAttribute("MovieDC", movieDC);
+        Collections.shuffle(movieDC);
+        List<Movie> randomMovieDC = movieDC.subList(0, Math.min(4, movieDC.size()));
+
+        // Xáo trộn danh sách và chọn ngẫu nhiên 4 phim "SC"
+        Collections.shuffle(movieSC);
+        List<Movie> randomMovieSC = movieSC.subList(0, Math.min(4, movieSC.size()));
+
+        model.addAttribute("MovieSC", randomMovieSC);
+        model.addAttribute("MovieDC", randomMovieDC);
 
         List<Promotion> promotions = promotionService.getAllPromotion();
 

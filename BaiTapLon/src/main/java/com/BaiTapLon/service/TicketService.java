@@ -26,4 +26,12 @@ public class TicketService {
         ticketRepository.save(ticket);
     }
 
+    public Integer findSeatIdByTicketId(int ticketId){
+        return ticketRepository.findSeatIdByTicketId(ticketId);
+    }
+
+    public Integer findScreeningIdByTicketId(int ticketId){
+        return ticketRepository.findSreeningIdByTicketId(ticketId);
+    }
+
 }

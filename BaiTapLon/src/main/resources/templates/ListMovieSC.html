@@ -129,9 +129,7 @@
     <nav class="top-nav">
         <div class="nav-container">
             <div class="logo">
-                <a th:href="@{/home}">
-                    <img th:src="@{./image/logo.png}" alt="Logo">
-                </a>
+                <img th:src="@{./image/logo.png}" alt="Logo">
             </div>
             <div class="search-bar">
                 <form th:action="search_movie">
@@ -151,7 +149,7 @@
                     <i class='bx bx-chevron-down' style="color: white;font-size: 16px;"></i>
                 </li>
                 <ul class="dropdown-menu hide">
-                    <li><a class="dropdown-item" target="_blank" th:href="@{/add_money}" >Xem LSĐV</a></li> <!-- target="_blank" mo qua 1 trang moi -->
+                    <li><a class="dropdown-item" th:href="@{/historyTicket}" >Xem LSĐV</a></li> <!-- target="_blank" mo qua 1 trang moi -->
                     <li>
                         <a ces:authorize="isAuthenticated()" class="dropdown-item" th:href="@{/logout}">Đăng xuất</a>
                     </li>
@@ -179,7 +177,7 @@
             <div class="movie-info" style="display: block;">
                 <div class="movie-title" th:text="${m.nameMovie}"></div>
                 <div class="movie-director" th:text="${m.authorMovie}"></div>
-                <a th:href="@{/movieDetail/{id}(id=${m.movieId})}" class="ticket-button">Xem Chi Tiết</a>
+                <button class="ticket-button"><a style="color: white;" th:href="@{/movieDetail/{id}(id=${m.movieId})}">Xem Chi Tiết</a></button>
             </div>
             </a>
         </div>

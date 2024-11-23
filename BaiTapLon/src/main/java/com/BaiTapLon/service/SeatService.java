@@ -16,4 +16,8 @@ public class SeatService {
         seatRepository.save(seats);
     }
 
+    public String findSeatNameBySeatId(int seatId){
+        return seatRepository.findSeatNameBySeatId(seatId);
+    }
+
 }
