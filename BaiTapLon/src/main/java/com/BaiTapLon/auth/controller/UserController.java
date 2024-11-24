@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.BaiTapLon.auth.entities.Custormer;
 import com.BaiTapLon.auth.service.CustormerService;
@@ -28,9 +29,11 @@ public class UserController {
     }
 
     @PostMapping("/saveUser")
-    public String SaveUser(@ModelAttribute Custormer custormer){
+    public String SaveUser(@ModelAttribute Custormer custormer, RedirectAttributes redirectAttributes){
         custormerService.saveCustormer(custormer);
-        return "redirect:/login?successfully";
+        // Khi sử dụng RedirectAttributes.addFlashAttribute, dữ liệu sẽ chỉ tồn tại trong request tiếp theo và không hiển thị trong URL
+        redirectAttributes.addFlashAttribute("successfully", true);
+        return "redirect:/login";
     }
 
 }

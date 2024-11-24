@@ -24,7 +24,7 @@ public class ConfigSecurity {
             .requestMatchers("/home","/image/**","/js/**", "/css/**","/app/**","/fonts/**","/register","/saveUser","/movieDetail/**","/phimDangChieu","/phimSapChieu","/khuyenMai","/promotion_detail/**","/search_movie").permitAll()
             .anyRequest().authenticated())
             .formLogin(login -> login.loginPage("/login")
-            .defaultSuccessUrl("/homeUser",true).permitAll()
+            .defaultSuccessUrl("/homeUser?loginSuccess",true).permitAll()
             )
             .logout(logout -> logout.invalidateHttpSession(true).clearAuthentication(true)
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

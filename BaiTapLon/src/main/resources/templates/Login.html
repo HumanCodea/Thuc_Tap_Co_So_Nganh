@@ -116,6 +116,87 @@
         .forgot_register a:hover{
             color: rgb(93, 93, 93);
         }
+        /* toast */
+        #toasts {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+
+        .toast {
+            padding: 20px;
+            border: none;
+            outline: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            animation: show_slide 1s ease forwards;
+        }
+
+        .toast .message {
+            padding: 0 20px;
+        }
+
+        .toast.success {
+            background: rgba(0, 128, 0, 0.4);
+            border-left: 6px solid rgb(0, 128, 0);
+        }
+
+        .toast.error {
+            background: rgb(255, 0, 0, 0.4);
+            border-left: 6px solid rgb(255, 0, 0);
+        }
+
+        .toast.error .countdown {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: rgb(255, 0, 0);
+            animation: countdown 4s linear forwards;
+        }
+
+        .toast.success .countdown {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: rgb(0, 128, 0);
+            animation: countdown 4s linear forwards;
+        }
+
+        @keyframes countdown {
+            20% {
+                width: 100%;
+            }
+            100% {
+                width: 0%;
+            }
+        }
+
+        @keyframes show_slide {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-10px);
+            }
+        }
+
+        @keyframes hide_slide {
+            0% {
+                transform: translateX(-10px);
+            }
+            100% {
+                transform: translateX(120%);
+            }
+        }
 
     </style>
 
@@ -146,6 +227,57 @@
         </div>
     </div>
 
+    <div th:if="${param.error}" data-message="error" id="toasts"></div>
+
+    <div th:if="${param.logout}" data-message="success" id="toasts"></div>
+
+    <div th:if="${successfully}" data-message="successfully" id="toasts"></div>
 
 </body>
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const toastContainer = document.getElementById("toasts");
+
+        if (toastContainer) {
+            // Lấy giá trị từ data-message nếu có
+            const message = toastContainer.dataset.message || null;
+
+            // Kiểm tra nếu message tồn tại và là "error"
+            if (message && message.toLowerCase() === "error") {
+                createToast(message, "Tài khoản hoặc mật khẩu không đúng");
+            }
+
+            if (message && message.toLowerCase() === "success") {
+                createToast(message, "Bạn đã đăng xuất thành công");
+            }
+
+            if (message && message.toLowerCase() === "successfully") {
+                createToast("success", "Bạn đã đăng ký thành công");
+            }
+        }
+    });
+        
+    function createToast(status, message) {
+        const toast = document.createElement('div');
+        toast.classList.add('toast', status);
+        toast.innerHTML = `
+        <i class='bx bx-check-circle'></i>
+        <span class="message">${message}</span>
+        <span class="countdown"></span>
+        `;
+
+        document.getElementById('toasts').appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.animation = 'hide_slide 1s ease forwards';
+        }, 4000);
+
+        setTimeout(() => {
+            toast.remove();
+        }, 6000);
+    }
+
+</script>
 </html>

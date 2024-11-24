@@ -60,6 +60,72 @@
         .hide{
             display: none;
         }
+        /* toast */
+        #toasts {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+
+        .toast {
+            padding: 20px;
+            border: none;
+            outline: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            animation: show_slide 1s ease forwards;
+        }
+
+        .toast .message {
+            padding: 0 20px;
+        }
+
+        .toast.success {
+            background: rgba(0, 128, 0, 0.4);
+            border-left: 6px solid rgb(0, 128, 0);
+        }
+
+        .toast.success .countdown {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: rgb(0, 128, 0);
+            animation: countdown 4s linear forwards;
+        }
+
+        @keyframes countdown {
+            20% {
+                width: 100%;
+            }
+            100% {
+                width: 0%;
+            }
+        }
+
+        @keyframes show_slide {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-10px);
+            }
+        }
+
+        @keyframes hide_slide {
+            0% {
+                transform: translateX(-10px);
+            }
+            100% {
+                transform: translateX(120%);
+            }
+        }
     </style>
 
     <nav class="top-nav">
@@ -199,7 +265,9 @@
             <p>© Copyright 2024 Rapchieuphim_nhom2</p>
         </div>
     </footer>
-    
+
+    <div th:if="${param.loginSuccess}" data-message="success" id="toasts"></div>
+
 </body>
 <script>
     let navItem = document.querySelector(".nav-item")
@@ -253,6 +321,42 @@
         stopAutoSlide();
         prevBanner();
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const toastContainer = document.getElementById("toasts");
+
+        if (toastContainer) {
+            // Lấy giá trị từ data-message nếu có
+            const message = toastContainer.dataset.message || null;
+
+            // Kiểm tra nếu message tồn tại và là "error"
+            if (message && message.toLowerCase() === "success") {
+                createToast("success", "Bạn đã đăng nhập thành công");
+            }
+        }
+    });
+
+    function createToast(status, message) {
+
+        const toast = document.createElement('div');
+        toast.classList.add('toast', status);
+        toast.innerHTML = `
+            <i class='bx bx-check-circle'></i>
+            <span class="message">${message}</span>
+            <span class="countdown"></span>
+        `;
+
+        document.getElementById('toasts').appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.animation = 'hide_slide 1s ease forwards';
+        }, 4000);
+
+        setTimeout(() => {
+            toast.remove();
+        }, 6000);
+    }
 
     startAutoSlide()
 

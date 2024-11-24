@@ -93,9 +93,9 @@ document.getElementById("checkout-btn").onclick = () => {
 
     createToast('success', 'Đặt vé thành công!'); // display notice
 
-    setTimeout(() => {
-        document.getElementById("billPopup").style.display = "flex"; // display bill after 6s
-    }, 6000);
+    // setTimeout(() => {
+    //     document.getElementById("billPopup").style.display = "flex"; // display bill after 6s
+    // }, 6000);
     
     // Tạo đối tượng dữ liệu để gửi lên server
     const orderData = {

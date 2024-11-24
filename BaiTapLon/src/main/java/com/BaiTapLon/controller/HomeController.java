@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.BaiTapLon.auth.service.CustormerService;
-import com.BaiTapLon.model.Bill;
 import com.BaiTapLon.model.Food;
 import com.BaiTapLon.model.Movie;
 import com.BaiTapLon.model.Promotion;
