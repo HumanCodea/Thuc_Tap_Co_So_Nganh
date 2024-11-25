@@ -107,13 +107,13 @@ document.getElementById("checkout-btn").onclick = () => {
     };
 
     // Gửi dữ liệu lên server qua API
-    // fetch('/saveBill', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(orderData)  // Chuyển đối tượng thành JSON
-    // })
+    fetch('/saveBill', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData)  // Chuyển đối tượng thành JSON
+    })
     billPopup.classList.toggle('show')
     updateTotal()
 };

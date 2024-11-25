@@ -79,7 +79,7 @@ public class HistoryBillController {
             billDTO.setBillId(b.getBillId());
             billDTO.setCustormerId(b.getCustormer().getCustormerId());
 
-            if(b.getPromotion().getPromotionId() != 0){
+            if(b.getPromotion() != null){
                 billDTO.setPromotionId(b.getPromotion().getPromotionId());
             } else {
                 billDTO.setPromotionId(0);
@@ -160,7 +160,7 @@ public class HistoryBillController {
 
             }
 
-            if(b.getPromotion().getPromotionId() != 0){
+            if(b.getPromotion() != null){
                 historyTicketDTO.setPromotionName(promotionService.findNamePromotionByPromotionId(b.getPromotion().getPromotionId()));
             } else {
                 historyTicketDTO.setPromotionName("Không có KM");

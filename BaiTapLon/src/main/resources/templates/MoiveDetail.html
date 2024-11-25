@@ -236,7 +236,7 @@
                 <div class="movie-booking-img">
                     <img th:src="@{'/image/' + ${Movie.posterMovie}}" alt="" class="movie-img">
                     <a th:href="@{/bookTicket/{id}(id=${Movie.movieId})}" th:if="${Movie.status == 'DC' }" class="movie-booking">
-                        Buy Ticket
+                        Đặt Vé Ngay
                     </a>
                     <a th:href="@{#}" th:if="${Movie.status == 'SC' }" class="movie-booking">
                         Sắp Chiếu
