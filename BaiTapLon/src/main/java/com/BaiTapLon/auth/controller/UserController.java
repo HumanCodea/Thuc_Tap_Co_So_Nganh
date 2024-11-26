@@ -36,4 +36,27 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @GetMapping("forgetPassword")
+    public String ForgotPassword(){
+
+
+        return "ForgetPassword";
+    }
+
+    @PostMapping("/verifyEmail")
+    public String VerifyEmail(@ModelAttribute("email") String email, RedirectAttributes redirectAttributes){
+
+        redirectAttributes.addFlashAttribute(email, true);
+
+        return "ForgetPasswordOtp";
+    }
+
+    @PostMapping("/verifyOtp")
+    public String VerifyOtp(){
+
+
+
+        return "ChangePassword";
+    }
+
 }
