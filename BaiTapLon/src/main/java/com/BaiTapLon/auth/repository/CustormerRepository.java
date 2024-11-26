@@ -19,4 +19,7 @@ public interface CustormerRepository extends JpaRepository<Custormer, Integer>{
     @Query("Select custormerId From Custormer Where email like ?1")
     public int findCustormerIdByUsername(String email);
 
+    @Query("Select c From Custormer c where c.email like ?1")
+    public Custormer findCustormerByEmail(String email);
+
 }

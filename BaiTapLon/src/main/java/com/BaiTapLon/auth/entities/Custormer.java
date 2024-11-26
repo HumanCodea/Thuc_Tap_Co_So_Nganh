@@ -57,4 +57,7 @@ public class Custormer{
     @OneToMany(mappedBy = "custormer")
     private List<Bill> bills;
 
+    @OneToMany(mappedBy = "custormer")
+    private List<OtpCode> otpCode;
+
 }

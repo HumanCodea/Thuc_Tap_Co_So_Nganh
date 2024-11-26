@@ -23,7 +23,7 @@ public class ConfigSecurity {
             .authorizeHttpRequests(auth -> auth
             .requestMatchers("/home","/image/**","/js/**", "/css/**","/app/**","/fonts/**","/register"
             ,"/saveUser","/movieDetail/**","/phimDangChieu","/phimSapChieu","/khuyenMai","/promotion_detail/**"
-            ,"/search_movie","/forgetPassword","/forgetPasswordOtp","/verifyEmail","/verifyOtp").permitAll()
+            ,"/search_movie","/forgetPassword","/forgetPasswordOtp","/verifyEmail","/verifyOtp","/changePassword").permitAll()
             .anyRequest().authenticated())
             .formLogin(login -> login.loginPage("/login")
             .defaultSuccessUrl("/homeUser?loginSuccess",true).permitAll()
