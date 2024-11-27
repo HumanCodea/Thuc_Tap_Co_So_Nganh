@@ -90,28 +90,27 @@ public class UserController {
     }
 
     @GetMapping("/forgetPasswordOtp")
-    public String ForgetPasswordOtp(@ModelAttribute("email") String email,Model model){
-
-        model.addAttribute("email", email);
+    public String ForgetPasswordOtp(){
 
         return "ForgetPasswordOtp";
     }
 
     @PostMapping("/verifyOtp")
-    public String VerifyOtp(@RequestParam("email") String email, @RequestParam("otp") int otp, Model model){
+    public String VerifyOtp(@RequestParam("email") String email, @RequestParam("otp") int otp, Model model,RedirectAttributes redirectAttributes){
 
         Custormer custormer = custormerService.findCustormerByEmail(email);
 
         OtpCode otpCode = otpCodeService.findByOtpAndCustormer(otp, custormer);
             
         if(otpCode == null){
+            redirectAttributes.addFlashAttribute(email, true);
             return "redirect:/forgetPasswordOtp?otpNotFound";
         }
 
         //So sánh xem thời gian hết hạn có trước thời gian hiện tại không. Nếu có, điều này có nghĩa là OTP đã hết hạn.
         if(otpCode.getExpirationTime().before(Date.from(Instant.now()))){
             otpCodeService.deleteById(otpCode.getOtpId());
-            return "redirect:/forgetPasswordOtp?otpExpired";
+            return "redirect:/verifyEmail?otpExpired";
         }
 
         model.addAttribute("email", email);
@@ -143,7 +142,7 @@ public class UserController {
         
         custormerService.saveCustormer(custormer);
 
-        redirectAttributes.addFlashAttribute("changePasswordSucces", true);
+        redirectAttributes.addFlashAttribute("changepasswordsucces", true);
 
         return "redirect:/login";
     }

@@ -233,6 +233,8 @@
 
     <div th:if="${successfully}" data-message="successfully" id="toasts"></div>
 
+    <div th:if="${changepasswordsucces}" data-message="changepasswordsucces" id="toasts"></div>
+
 </body>
 <script>
 
@@ -255,6 +257,10 @@
 
             if (message && message.toLowerCase() === "successfully") {
                 createToast("success", "Bạn đã đăng ký thành công");
+            }
+
+            if (message && message.toLowerCase() === "changepasswordsucces") {
+                createToast("success", "Bạn đã đổi mật khẩu thành công");
             }
         }
     });
