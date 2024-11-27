@@ -165,7 +165,7 @@ function updateTotal() {
     document.getElementById('quanityTicket').innerText=quanityTicket + ' vé'
     document.getElementById('buyDate').innerText=today.toLocaleDateString('vi-VN')
     document.getElementById('totalResult').innerText=totalResult + 'VNĐ'
-
+    document.getElementById('promotionId').innerText=selectedPromotion
 }
 
 // Notice book ticket success

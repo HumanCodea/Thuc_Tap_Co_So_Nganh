@@ -230,6 +230,10 @@ public class HomeController {
 
         model.addAttribute("nameMovie", nameMovie);
 
+        if (movies.isEmpty()) {
+            model.addAttribute("notfoundmovie","Không tìm thấy phim...Vui lòng nhập lại tên phim!!!");
+        }
+
         model.addAttribute("Movie", movies);
 
         return "SearchMovie";
