@@ -11,6 +11,7 @@
 <body>
 
     <style>
+        
         .footer-container{
             display: flex;
             justify-content: space-between;
@@ -56,7 +57,7 @@
     <section class="banner-section">
         <i class='bx bxs-chevron-left prev'></i>
         <div class="banner-container">
-            <div class="banner-item"><img th:src="@{./image/tgdqposter.png}" alt="Phim 1"></div>
+            <div class="banner-item"><img th:src="@{./image/t3.png}" alt="Phim 1"></div>
             <div class="banner-item"><img th:src="@{./image/anh11.png}" alt="Phim 2"></div>
             <div class="banner-item"><img th:src="@{./image/anh10.png}" alt="Phim 5"></div>
             <div class="banner-item"><img th:src="@{./image/posterAct.png}" alt="Phim 3"></div>
@@ -66,14 +67,14 @@
     </section>
 
     <section class="movies-section">
-        <h2>Phim Đang Chiếu</h2>
-        <div class="movies-container">
+        <h2 class="show-on-scroll left-to-right">Phim Đang Chiếu</h2>
+        <div class="movies-container zoom show-on-scroll">
 
             <a th:each="m :${MovieDC}" class="click-watch" th:href="@{/movieDetail/{id}(id=${m.movieId})}">
                 <div class="movie-item">
                     <img th:src="@{'/image/' + ${m.posterMovie}}">
                     <h3 th:text="${m.nameMovie}"></h3>
-                    <a th:href="@{/bookTicket/{id}(id=${m.movieId})}" class="ticket-button">Đặt Vé Ngay</a>
+                    <a th:href="@{/bookTicket/{id}(id=${m.movieId})}" class="ticket-button description">Đặt Vé Ngay</a>
                 </div>
             </a>
 
@@ -81,8 +82,8 @@
     </section>
 
     <section class="movies-section"> 
-        <h2>Phim Sắp Chiếu</h2>
-        <div class="movies-container">
+        <h2 class="show-on-scroll right-to-left">Phim Sắp Chiếu</h2>
+        <div class="movies-container zoom show-on-scroll">
             <a th:each="m :${MovieSC}" class="click-watch" th:href="@{/movieDetail/{id}(id=${m.movieId})}">
                 <div class="movie-item">
                     <img th:src="@{'/image/' + ${m.posterMovie}}">
@@ -95,9 +96,9 @@
     </section>
 
     <section class="movies-section"> 
-        <h2>Khuyến Mãi</h2>
+        <h2 class="show-on-scroll left-to-right">Khuyến Mãi</h2>
 
-        <div class="movies-container">
+        <div class="movies-container zoom show-on-scroll">
 
             <a th:each="p :${Promotion}" class="click-watch" th:href="@{/promotion_detail/{id}(id=${p.promotionId})}">
                 <div class="movie-item">
@@ -153,6 +154,7 @@
     </footer>
     
 </body>
+<script th:src="@{/js/animation.js}"></script>
 <script>
     const sliderTrack = document.querySelector('.banner-container');
     const banners = document.querySelectorAll('.banner-item');

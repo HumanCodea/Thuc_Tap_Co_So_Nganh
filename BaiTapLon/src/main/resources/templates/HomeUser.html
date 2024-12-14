@@ -41,7 +41,7 @@
         }
 
         .navbar_nav_right .dropdown-menu{
-            position: fixed;
+            position: absolute;
             width: 130px;
             top: 53px;
             right: 0;
@@ -170,7 +170,7 @@
     <section class="banner-section">
         <i class='bx bxs-chevron-left prev'></i>
         <div class="banner-container">
-            <div class="banner-item"><img th:src="@{./image/tgdqposter.png}" alt="Phim 1"></div>
+            <div class="banner-item"><img th:src="@{./image/t3.png}" alt="Phim 1"></div>
             <div class="banner-item"><img th:src="@{./image/anh11.png}" alt="Phim 2"></div>
             <div class="banner-item"><img th:src="@{./image/anh10.png}" alt="Phim 5"></div>
             <div class="banner-item"><img th:src="@{./image/posterAct.png}" alt="Phim 3"></div>
@@ -180,8 +180,8 @@
     </section>
 
     <section class="movies-section">
-        <h2>Phim Đang Chiếu</h2>
-        <div class="movies-container">
+        <h2 class="show-on-scroll left-to-right">Phim Đang Chiếu</h2>
+        <div class="movies-container zoom show-on-scroll">
 
             <a th:each="m :${MovieDC}" class="click-watch" th:href="@{/movieDetail/{id}(id=${m.movieId})}">
                 <div class="movie-item">
@@ -195,8 +195,8 @@
     </section>
 
     <section class="movies-section"> 
-        <h2>Phim Sắp Chiếu</h2>
-        <div class="movies-container">
+        <h2 class="show-on-scroll right-to-left">Phim Sắp Chiếu</h2>
+        <div class="movies-container zoom show-on-scroll">
             
             <a th:each="m :${MovieSC}" class="click-watch" th:href="@{/movieDetail/{id}(id=${m.movieId})}">
                 <div class="movie-item">
@@ -210,8 +210,8 @@
     </section>
 
     <section class="movies-section"> 
-        <h2>Khuyến Mãi</h2>
-        <div class="movies-container" >
+        <h2 class="show-on-scroll left-to-right">Khuyến Mãi</h2>
+        <div class="movies-container zoom show-on-scroll">
             
             <a th:each="p :${Promotion}" class="click-watch" th:href="@{/promotion_detail/{id}(id=${p.promotionId})}">
                 <div class="movie-item">
@@ -269,6 +269,7 @@
     <div th:if="${param.loginSuccess}" data-message="success" id="toasts"></div>
 
 </body>
+<script th:src="@{/js/animation.js}"></script>
 <script>
     let navItem = document.querySelector(".nav-item")
     let dropdownMenyu = document.querySelector('.dropdown-menu')

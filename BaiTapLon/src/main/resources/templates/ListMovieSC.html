@@ -105,7 +105,7 @@
             list-style: none;
         }
         .navbar_nav_right .dropdown-menu{
-            position: fixed;
+            position: absolute;
             width: 130px;
             top: 53px;
             right: 0;
@@ -171,7 +171,7 @@
 
     <div class="grid-container">
 
-        <div class="movie-card" th:each="m :${Movie}">
+        <div class="movie-card zoom show-on-scroll" th:each="m :${Movie}">
             <a th:href="@{/movieDetail/{id}(id=${m.movieId})}">
             <img th:src="@{'/image/' + ${m.posterMovie}}">
             <div class="movie-info" style="display: block;">
@@ -228,6 +228,7 @@
     </footer>
     
 </body>
+<script th:src="@{/js/animation.js}"></script>
 <script>
     let navItem = document.querySelector(".nav-item")
     let dropdownMenyu = document.querySelector('.dropdown-menu')
