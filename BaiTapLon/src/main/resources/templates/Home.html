@@ -23,6 +23,15 @@
             padding: 40px 20px;
             flex-wrap: wrap; 
         }
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: yellow;
+            font-size: 1em;
+            will-change: transform;
+            user-select: none;
+            z-index: 9999; 
+        }
     </style>
 
     <nav class="top-nav">
@@ -67,8 +76,8 @@
     </section>
 
     <section class="movies-section">
-        <h2 class="show-on-scroll left-to-right">Phim Đang Chiếu</h2>
-        <div class="movies-container zoom show-on-scroll">
+        <h2>Phim Đang Chiếu</h2>
+        <div class="movies-container">
 
             <a th:each="m :${MovieDC}" class="click-watch" th:href="@{/movieDetail/{id}(id=${m.movieId})}">
                 <div class="movie-item">
@@ -82,8 +91,8 @@
     </section>
 
     <section class="movies-section"> 
-        <h2 class="show-on-scroll right-to-left">Phim Sắp Chiếu</h2>
-        <div class="movies-container zoom show-on-scroll">
+        <h2>Phim Sắp Chiếu</h2>
+        <div class="movies-container">
             <a th:each="m :${MovieSC}" class="click-watch" th:href="@{/movieDetail/{id}(id=${m.movieId})}">
                 <div class="movie-item">
                     <img th:src="@{'/image/' + ${m.posterMovie}}">
@@ -96,9 +105,9 @@
     </section>
 
     <section class="movies-section"> 
-        <h2 class="show-on-scroll left-to-right">Khuyến Mãi</h2>
+        <h2>Khuyến Mãi</h2>
 
-        <div class="movies-container zoom show-on-scroll">
+        <div class="movies-container">
 
             <a th:each="p :${Promotion}" class="click-watch" th:href="@{/promotion_detail/{id}(id=${p.promotionId})}">
                 <div class="movie-item">

@@ -27,3 +27,28 @@ function checkAnimation(){
 window.onscroll = checkAnimation
 
 checkAnimation()
+
+// tuyet roi
+const snowflakeCount = 300;
+
+const body = document.body;
+
+for (let i = 0; i < snowflakeCount; i++) {
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    snowflake.innerHTML = '❄';
+    snowflake.style.left = Math.random() * 100 + 'vw';
+    snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
+    snowflake.style.fontSize = Math.random() * 5 + 5 + 'px'; 
+    snowflake.style.opacity = Math.random();
+    body.appendChild(snowflake);
+}
+
+document.querySelectorAll('.snowflake').forEach(snowflake => {
+    snowflake.animate([
+        { transform: `translateY(${window.innerHeight + 10}px)` }
+    ], {
+        duration: Math.random() * 5000 + 5000, 
+        iterations: Infinity 
+    });
+});
